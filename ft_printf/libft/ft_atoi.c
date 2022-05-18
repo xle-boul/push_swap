@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xle-boul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 13:21:38 by xle-boul          #+#    #+#             */
-/*   Updated: 2021/10/26 16:28:46 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/04/07 22:42:08 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,27 @@ typedef struct s_atoi
 	int						i;	
 	long long				lln;
 	char					*str_bis;
+	int						sign;
 }				t_atoi;
 /* converts a string to corresponding integer */
 
 static char	*ft_trim_string(const char *str, t_atoi *n)
 {
+	n->sign = 0;
 	n->i = 1;
 	if (!str)
 		return (0);
 	while (*str == '\t' || *str == '\n' || *str == '\v'
 		|| *str == '\r' || *str == '\f' || *str == ' ')
 		str++;
-	if (*str == '-')
-		n->i = -1;
-	if (*str == '+' || *str == '-')
+	while (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			n->sign++;
 		str++;
+	}
+	if (n->sign % 2 != 0)
+		n->i = -1;
 	return ((char *)str);
 }
 

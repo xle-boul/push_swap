@@ -6,11 +6,12 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 11:39:20 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/03/03 19:26:57 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:53:19 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_printf.h"
+#include <stdio.h>
 
 /* assigns values to struct i according to flags */
 

@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   operations_double.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/19 14:53:13 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/03/19 15:18:24 by xle-boul         ###   ########.fr       */
+/*   Created: 2022/03/21 11:06:16 by xle-boul          #+#    #+#             */
+/*   Updated: 2022/05/06 11:53:32 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/checker.h"
+#include "../includes/push_swap.h"
 
-int	main(int ac, char **av)
+void	swapswap(t_stack **a, t_stack **b)
 {
-	if (ac < 3)
-		ft_error_handle(0);
-	ft_printf("%s, %s", av[1], av[2]);
-	return (0);
+	swap(a, 0);
+	swap(b, 0);
+	ft_operations_counter("ss", 0, 1);
+}
+
+void	rotrot(t_stack **a, t_stack **b)
+{
+	rotate(a, 0);
+	rotate(b, 0);
+	ft_operations_counter("rr", 0, 1);
+}
+
+void	revrotrot(t_stack **a, t_stack **b)
+{
+	reverse_rotate(a, 0);
+	reverse_rotate(b, 0);
+	ft_operations_counter("rrr", 0, 1);
 }

@@ -1,0 +1,6 @@
+xfer: 2, max: 97, med: 97, min: 96
+xfer: 3, max: 95, med: 94, min: 93
+xfer: 6, max: 92, med: 90, min: 87
+xfer: 12, max: 86, med: 81, min: 75
+xfer: 25, max: 74, med: 62, min: 50
+xfer: 50, max: 49, med: 25, min: 0

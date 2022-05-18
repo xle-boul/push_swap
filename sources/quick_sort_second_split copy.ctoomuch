@@ -1,0 +1,216 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quick_sort_second_split.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 21:33:28 by xle-boul          #+#    #+#             */
+/*   Updated: 2022/05/17 14:05:17 by xle-boul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/push_swap.h"
+
+void	ft_bring_both_bottoms_up(t_stack **a, t_stack **b, int count_a, int count_b)
+{
+	if (count_a > 0 && count_b > 0)
+	{
+		while (count_a > 0 && count_b > 0)
+		{
+			revrotrot(a, b);
+			count_a--;
+			count_b--;
+		}
+	}
+	while (count_a-- > 0)
+		reverse_rotate(b, 'b');
+	while (count_b-- > 0)
+		reverse_rotate(a, 'a');
+}
+
+void	ft_bring_higher_split_back(t_stack **a, t_stack **b, t_ct *n)
+{
+	int	count_low;
+	int	count_high;
+
+	count_low = n->count_low_b;
+	count_high = n->count_high_b;
+	while (count_low-- > 0)
+		reverse_rotate(b, 'b');
+	if (ft_check_if_sorted(*a) == 0)
+	{
+		n->count_high_b = 0;
+		return ;
+	}
+	while (count_high-- > 0)
+		push(b, a, 'b');
+}
+
+// prépare à couper en 2 chacun des 4 splits créés.
+// utilise la structure t_splits pour stocker les valeurs
+// des minima et des médianes de chaque split.
+t_splits	ft_second_counters_init(t_ct *n, t_data *data)
+{
+	t_splits	s;
+
+	s.min_low_a = data->min;
+	s.min_high_a = s.min_low_a + n->count_low_a;
+	s.min_low_b = s.min_high_a + n->count_high_a;
+	s.min_high_b = s.min_low_b + n->count_low_b;
+	s.med_low_a = n->count_low_a / 2 + s.min_low_a;
+	s.med_high_a = n->count_high_a / 2 + s.min_high_a;
+	s.med_low_b = n->count_low_b / 2 + s.min_low_b;
+	s.med_high_b = n->count_high_b / 2 + s.min_high_b;
+	return (s);
+}
+
+// prepare la structure t_ct qui gère les compteurs des differents segments
+t_ct	ft_counters_init(t_data *data)
+{
+	t_ct	n;
+	
+	n.steps = data->to_transfer;
+	n.count_high_a = 0;
+	n.count_high_b = 0;
+	n.count_low_a = 0;
+	n.count_low_b = 0;
+	n.new_med_a = n.steps / 4 + data->min;
+	n.new_med_b = n.steps / 4 + data->med;
+	return (n);
+}
+
+void	ft_sub_split(t_stack **a, t_stack **b, int	med, int *ct_b, int *ct_a)
+{
+	if ((*b)->idx == (*a)->idx - 1)
+		push(a, b, 'a');
+	else if ((*b)->next != NULL && (*b)->next->idx == (*a)->idx - 1)
+	{
+		swap(b, 'b');
+		push(a, b, 'a');
+	}
+	else if ((*b)->idx <= med)
+	{
+		(*ct_b)++;
+		rotate(b, 'b');
+	}
+	else
+	{
+		(*ct_a)++;
+		push(a, b, 'a');
+		rotate(a, 'a');
+	}
+}
+
+t_ct	ft_counter_for_bottom_up_init(void)
+{
+	t_ct	count;
+
+	count.count_a = 0;
+	count.count_b = 0;
+	return (count);
+}
+
+void	ft_move_a_split_to_b(t_stack **a, t_stack **b, int count)
+{
+	if (ft_check_if_sorted(*a) == 0)
+		return ;
+	while (count-- > 0)
+	{
+		if (ft_check_if_sorted(*a) == 0)
+			return ;
+		push(b, a, 'b');
+	}
+}
+
+void	ft_sort_sub_split(t_stack **a, t_stack **b, int minimum)
+{
+	int	target;
+	int	path;
+
+	while (1)
+	{
+		if ((*a)->idx == minimum)
+			return ;
+		target = (*a)->idx - 1;
+		path = ft_find_shortest_path(*b, target);
+		if ((*b)->idx == target)
+			push (a, b, 'a');
+		else if ((*b)->next && (*b)->next->idx == target)
+		{
+			swap(b, 'b');
+			push(a, b, 'a');
+		}
+		else
+			if (path >= 0)
+				rotate(b, 'b');
+			else
+				reverse_rotate(b, 'b');
+	}
+}
+
+// fonction qui s'occupe de lancer chaque sous-split dans la fonction de tri
+void	ft_split_and_sort(t_stack **a, t_stack **b, t_ct n, t_splits s)
+{
+	t_ct	ct;
+
+	ct = ft_counter_for_bottom_up_init();
+	if (n.count_high_b > 0)
+	{
+		while (n.count_high_b-- > 0)
+			ft_sub_split(a, b, s.med_high_b, &ct.count_a, &ct.count_b);
+		ft_bring_both_bottoms_up(a, b, ct.count_a, ct.count_b);
+		ft_move_a_split_to_b(a, b, ct.count_b);
+		ft_sort_sub_split(a, b, s.min_high_b);
+	}
+	ct = ft_counter_for_bottom_up_init();
+	while (n.count_low_b-- > 0)
+		ft_sub_split(a, b, s.med_low_b, &ct.count_a, &ct.count_b);
+	ft_bring_both_bottoms_up(a, b, ct.count_a, ct.count_b);
+	ft_move_a_split_to_b(a, b, ct.count_b);
+	ft_sort_sub_split(a, b, s.min_low_b);
+	ct = ft_counter_for_bottom_up_init();
+	while (n.count_high_a-- > 0)
+		ft_sub_split(a, b, s.med_high_a, &ct.count_a, &ct.count_b);
+	ft_bring_both_bottoms_up(a, b, ct.count_a, ct.count_b);
+	ft_move_a_split_to_b(a, b, ct.count_b);
+	ft_sort_sub_split(a, b, s.min_high_a);
+	ct = ft_counter_for_bottom_up_init();
+	while (n.count_low_a-- > 0)
+		ft_sub_split(a, b, s.med_low_a, &ct.count_a, &ct.count_b);
+	ft_bring_both_bottoms_up(a, b, ct.count_a, ct.count_b);
+	ft_move_a_split_to_b(a, b, ct.count_b);
+	ft_sort_sub_split(a, b, s.min_low_a);
+}
+
+// separe les segments en 4 parties classees par tailles.
+// 	1/ a high: tout ce qui est au dessus du quartile superieur
+// 	2/ a low: tout ce qui est au dessus de la mediane
+// 	3/ a high: tout ce qui est en dessous de la mediane
+// 	4/ a low: tout ce qui est en dessous du quartile inferieur
+
+// ft_push_to_top_of_a: envoie les a high et low au dessus de la liste A
+// ft_split_between_a_and_b: envoiles les b high and le fond de A et
+// les b low dans le fond de b
+void	ft_second_split(t_stack **a, t_stack **b, t_data **data)
+{
+	t_ct		n;
+	// t_splits	s;
+
+	n = ft_counters_init(*data);
+	while (n.steps-- > 0)
+	{
+		if ((*b)->idx < (*data)->med)
+			ft_push_to_top_of_a(a, b, &n);
+		else
+		ft_split_between_a_and_b(a, b, &n);
+	}
+	ft_split_a_even_more(a, b, n);
+	ft_bring_both_bottoms_up(a, b, n.count_high_a, n.count_high_b);
+	ft_bring_higher_split_back(a, b, &n);
+	// s = ft_second_counters_init(&n, *data);
+	// ft_split_and_sort(a, b, n, s);
+	ft_move_data_pointer(data);
+	ft_print_med(*data);
+	ft_print_both_lists(*a,*b);
+}

@@ -1,0 +1,128 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quick_sort_transfer_a.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/11 10:03:56 by xle-boul          #+#    #+#             */
+/*   Updated: 2022/05/14 16:00:07 by xle-boul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/push_swap.h"
+
+/* =====================================================
+reçoit une liste pre triée.
+reçoit une liste de maxima correspondants
+regarde où se trouve le plus proche élément nécessaire (maximum ou med/min)
+calcule la distance en steps pour aller chercher l'un ou l'autre.
+deplace la liste pour placer ledit élément en tête de liste B
+pour le transférer vers A
+	cas 1) Si c'est l'élément directement inférieur à A->idx, push
+	cas 2) Si c'est le minimum du segment travaillé, push + rotate
+	pour mettre les éléments inférieurs au fond de A.
+		tenir un compteur pour savoir combien d'élément ramener
+		lorsqu'on a transféré tout le segment.
+une fois le segment transféré, ramener tous les élément du fond de A
+normalement déjà classés, sur la tête de A.
+===================================================== */
+
+// deplacer le pointeur de data pour pointer sur les donnees correctes
+// free la memoire du chainon utilise
+void	ft_move_data_pointer(t_data **data)
+{
+	t_data	*tmp;
+
+	tmp = (*data);
+	(*data) = (*data)->next;
+	free (tmp);
+}
+
+// fonction qui trouve l'élément minimum à transférer selon les données reçues
+int	ft_find_minimum(t_stack **head, int minimum, int target_high)
+{
+	t_stack	*tmp;
+	int		num;
+
+	tmp = *head;
+	num = target_high;
+	while (tmp != NULL)
+	{
+		if (tmp->idx < num && tmp->idx >= minimum && tmp->idx <= target_high)
+			num = tmp->idx;
+		tmp = tmp->next;
+	}
+	return (num);
+}
+
+void	ft_sort_back_a(t_stack **a, int items)
+{
+	while (items-- > 0)
+		reverse_rotate(a, 'a');
+}
+
+void	ft_transfer_element(t_stack **a, t_stack **b, int path, int swtch, int *items)
+{
+	while (path-- > 0)
+	{
+		if (swtch == 0)
+			rotate(b, 'b');
+		else
+			reverse_rotate(b, 'b');
+	}
+	push(a, b, 'a');
+		if (swtch == 1)
+		{
+			rotate(a, 'a');
+			(*items)++;
+		}
+}
+
+void	ft_transfer_init(t_stack **a, t_stack **b, t_data **data, int *items)
+{
+	int	low_num;
+	int	high_num;
+	int	path;
+
+	high_num = (*a)->idx - 1;
+	if ((*a)->idx > (*data)->med)
+		low_num = ft_find_minimum(b, (*data)->med, high_num);
+	else
+		low_num = ft_find_minimum(b, (*data)->min, (*data)->med);
+	if ((unsigned)ft_find_shortest_path(*b, low_num) >= (unsigned)ft_find_shortest_path(*b, high_num))
+	{
+		path = ft_find_shortest_path(*b, high_num);
+		ft_transfer_element(a, b, path, 0, items);
+	}
+	else
+	{
+		path = ft_find_shortest_path(*b, low_num);
+		ft_transfer_element(a, b, path, 1, items);
+	}
+	ft_printf("path = %d\n", path);
+	ft_printf("low num = %d high num = %d\n", low_num, high_num);
+		
+}
+
+// fonction principale. CF haut de page
+void	ft_quick_sort(t_stack **a, t_stack **b, t_data **data)
+{
+	int	transferred;
+	int	items;
+
+	ft_print_both_lists(*a, *b);
+	transferred = 0;
+	items = 0;
+	while (transferred < (*data)->to_transfer)
+	{
+		ft_transfer_init(a, b, data, &items);
+		transferred++;
+	}
+	if (items > 0)
+		ft_sort_back_a(a, items);
+	ft_printf("transferred %d\n", transferred);
+	ft_print_both_lists(*a, *b);
+	ft_move_data_pointer(data);
+	// ft_quick_sort(a, b, data);
+}

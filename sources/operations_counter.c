@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   operations_counter.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/19 22:39:48 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/03/19 22:53:34 by xle-boul         ###   ########.fr       */
+/*   Created: 2022/04/09 12:25:08 by xle-boul          #+#    #+#             */
+/*   Updated: 2022/05/10 21:13:17 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_movement_init(t_stack *head_a)
+// compte le nombre d'operations effectuees et les imprime sur
+// la sortie standard
+void	ft_operations_counter(char *op, char who, int swtch)
 {
-	t_stack *head_b;
+	static int	count = 0;
 
-	head_b = NULL;
-	ft_sort_algo(head_a, head_b);
+	if (swtch == 0)
+	{
+		if (who == 'a' || who == 'b')
+		{
+			ft_printf("%s%c\n", op, who);
+			count++;
+		}
+	}
+	else if (swtch == 1)
+	{
+		ft_printf("%s\n", op);
+		count++;
+	}
+	else
+		ft_printf("done in %d operations\n", count);
 }
