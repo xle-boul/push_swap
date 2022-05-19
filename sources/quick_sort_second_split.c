@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 21:33:28 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/18 11:48:56 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:44:14 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_bring_back_from_bottom_b(t_stack **a, t_stack **b, int num)
 	}
 }
 
+// lance la fonction de tri avec chaque minimum de chaque segment
 void	ft_sort_shit(t_stack **a, t_stack **b, t_splits s)
 {
 	ft_sort_shit_split(a, b, s.max_high_b, s.min_high_b);

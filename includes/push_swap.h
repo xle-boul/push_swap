@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:56:44 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/18 11:40:53 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:35:24 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ typedef struct s_splits
 	int	max_high_a;
 	int	min_high_b;
 	int	max_high_b;
+	int	med_low_a;
+	int	med_low_b;
+	int	med_high_a;
+	int	med_high_b;
 }				t_splits;
 
 // operations possibles

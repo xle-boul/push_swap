@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 11:39:22 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/18 11:39:55 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:37:29 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ t_splits	ft_second_counters_init(t_ct *n, t_data *data)
 	s.max_high_a = s.min_low_b - 1;
 	s.max_low_b = s.min_high_b - 1;
 	s.max_high_b = data->max;
+	s.med_low_a = s.min_low_a + n->count_low_a / 2;
+	s.med_high_a = s.min_high_a + n->count_high_a / 2;
+	s.med_low_b = s.min_low_b + n->count_low_b / 2;
+	s.med_high_b = s.min_high_b + n->count_high_b / 2;
 	return (s);
 }
 
