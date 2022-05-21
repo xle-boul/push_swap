@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 21:37:50 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/10 21:03:58 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/20 22:04:37 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,6 @@ void	ft_free_list(t_stack *head)
 	if (!head)
 		return ;
 	while (head->next)
-	{
-		tmp = head->next;
-		free(head);
-		head = tmp;
-	}
-	free(head);
-	head = NULL;
-}
-
-void	ft_free_list_data(t_data *head)
-{
-	t_data	*tmp;
-
-	if (!head)
-		return ;
-	while (head->next != NULL)
 	{
 		tmp = head->next;
 		free(head);

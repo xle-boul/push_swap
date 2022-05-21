@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:56:44 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/19 10:35:24 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/21 11:40:13 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,57 +31,16 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }				t_stack;
 
-// sert a creer une liste chainee qui va stocker les valeurs
-// des differents maxima de chaque segment
-typedef struct s_data
-{
-	int					med;
-	int					min;
-	int					max;
-	int					to_transfer;
-	struct s_data		*next;
-}				t_data;
-
-// sert a gerer les maxima lors du passage de A vers B
+// sert a gerer les maxima lors des passages entre A et B
 typedef struct s_index
 {
 	int	number_of_el_to_pass;
-	int	future_len_a;
-	int	future_median_b;
-	int	future_max_b;
-	int	future_min_b;
+	int	len_hi;
+	int	len_lo;
+	int	median;
+	int	max;
+	int	min;
 }			t_index;
-
-// contient tous les compteurs pour le quick sort
-typedef struct s_counters
-{
-	int	steps;
-	int	count_high_a;
-	int	count_high_b;
-	int	count_low_a;
-	int	count_low_b;
-	int	new_med_a;
-	int	new_med_b;
-	int	count_a;
-	int	count_b;
-}			t_ct;
-
-// contient tous les maxima des derniers splits
-typedef struct s_splits
-{
-	int	min_low_a;
-	int	max_low_a;
-	int	min_low_b;
-	int	max_low_b;
-	int	min_high_a;
-	int	max_high_a;
-	int	min_high_b;
-	int	max_high_b;
-	int	med_low_a;
-	int	med_low_b;
-	int	med_high_a;
-	int	med_high_b;
-}				t_splits;
 
 // operations possibles
 void	swap(t_stack **head, char who);
@@ -104,10 +63,9 @@ void	ft_sort_init(t_stack *a, int ac);
 
 // gestion des erreurs et free
 void	ft_error_handler(int error);
-void	ft_free_list_data(t_data *head);
 void	ft_free_list(t_stack *a);
 void	ft_operations_counter(char *op, char who, int swtch);
-void	ft_fini(t_stack *a, t_stack *b, t_data *data);
+void	ft_fini(t_stack *a, t_stack *b);
 
 // utilitaires pour trouver des index et/ou des positions
 int		max(t_stack *head);
@@ -123,10 +81,9 @@ t_stack	*last_node(t_stack **head);
 
 // prints
 void	ft_print_both_lists(t_stack *a, t_stack *b);
-void	ft_print_data(t_index sort_b);
-void	ft_print_med(t_data *head);
 void	ft_print_list_index(t_stack *head);
 void	ft_print_list(t_stack *head);
+void	ft_print_index(t_index s);
 
 // gestion du sort pour toute liste inferieure a 11 elements
 void	ft_sort_3(t_stack **head, char who);
@@ -139,35 +96,30 @@ int		from_bot(t_stack **head, int num);
 int		ft_find_shortest_path(t_stack *head, int num);
 
 // gestion du sort pour toute liste superieure a 11 elements
-void	ft_transfer_to_b_init(t_stack **a, t_stack **b, t_data **data);
-void	ft_quick_sort_first(t_stack **a, t_stack **b, t_data **data);
-void	ft_move_data_pointer(t_data **data);
-void	ft_second_split(t_stack **a, t_stack **b, t_data **data);
+void	ft_quick_sort_hub(t_stack **a, t_stack **b);
+void	ft_quick_sort_first_part(t_stack **a, t_stack **b);
+void	ft_quick_sort_second_part(t_stack **a, t_stack **b);
+
+
+// gestion des mouvements de la premiere partie de quick sort
+void	ft_push_to_top(t_stack **head, t_index s);
+void	ft_push_to_bottom(t_stack **head, t_index s);
+void	ft_quick_sort_step_1(t_stack **a, t_stack **b, t_index step1);
+void	ft_quick_sort_step_2(t_stack **a, t_stack **b, t_index step2);
+void	ft_quick_sort_step_3(t_stack **a, t_stack **b, t_index step3);
+void	ft_quick_sort_step_4(t_stack **a, t_stack **b, t_index step4);
+t_index	ft_set_indexes_step1(t_stack **head);
+t_index	ft_set_indexes_step2(t_stack **head, char c);
+t_index	ft_set_indexes_step3(t_index s, char c);
+t_index	ft_set_indexes_step4(t_stack **head, char c);
 
 // utilitaires pour le quick sort
 int		max_index(t_stack *head);
 int		min_index(t_stack *head);
 int		last_index(t_stack *head);
 int		ft_next_index(t_stack *head);
-void	ft_split_a_even_more(t_stack **a, t_stack **b, t_ct n);
-void	ft_split_between_a_and_b(t_stack **a, t_stack **b, t_ct *n);
-void	ft_push_to_top_of_a(t_stack **a, t_stack **b, t_ct *n);
+void	ft_reassort_a(t_stack **a, t_stack **b, t_index s);
+void	ft_reassort_a_and_b(t_stack **a, t_stack **b, t_index s, t_index t);
+void	ft_empty_a(t_stack **a, t_stack **b);
 
-// initiateurs de compteurs pour quick sort
-t_splits	ft_second_counters_init(t_ct *n, t_data *data);
-t_ct	ft_counters_init(t_data *data);
-
-// gestion du classement a proprement parler
-void	ft_sort_shit_split(t_stack **a, t_stack **b, int max, int min);
-
-// utilitaires du classement
-void	ft_bring_back_from_bottom_a(t_stack **a, int num);
-void	ft_test_next_element(t_stack **a, t_stack **b, int *bottom_b);
-void	ft_switch(t_stack **b, int swtch, int *bottom_b);
-
-// gestion d'erreurs du quick sort
-void	ft_pre_conditions(t_stack *a, t_stack *b, t_data *data);
-void	ft_post_condition(t_stack *a, t_stack *b, int count, t_data *data);
-
-int	ft_find_minimum(t_stack **head, int minimum, int target_high);
 #endif
