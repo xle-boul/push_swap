@@ -6,28 +6,11 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:56:49 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/23 11:45:33 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/23 20:25:25 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	ft_move_to_first_of_range(t_stack **a, int path, t_index s)
-{
-	while (1)
-	{
-		if (s.min_lo <= (*a)->idx && (*a)->idx <= s.max_hi)
-			return ;
-		else
-		{
-			if (path > 0)
-				rotate(a, 'a');
-			else
-				reverse_rotate(a, 'a');
-		}
-	}
-}
-
 
 void	ft_transfer_to_b(t_stack **a, t_stack **b, t_index s)
 {

@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:39:48 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/23 13:36:05 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/23 20:21:43 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_sort_init(t_stack *a, int ac)
 	{
 		ft_quick_sort(&a, &b);
 		ft_bring_back_to_a(&a, &b);
-		ft_fini(a, b);
 	}
 	if (b == NULL && ft_check_if_sorted(a) == 0)
 		ft_operations_counter(NULL, 0, 2);
