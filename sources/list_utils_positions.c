@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:42:28 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/11 09:16:49 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:30:07 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ t_stack	*last_node(t_stack **head)
 	t_stack	*tmp;
 
 	tmp = *head;
+	if (!tmp)
+		return (NULL);
+	if (!tmp->next)
+		return (tmp);
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);

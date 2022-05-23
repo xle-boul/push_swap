@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:56:44 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/21 11:40:13 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/23 12:01:07 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,21 @@ typedef struct s_stack
 typedef struct s_index
 {
 	int	number_of_el_to_pass;
-	int	len_hi;
-	int	len_lo;
-	int	median;
-	int	max;
-	int	min;
+	int	splits;
+	int	max_hi;
+	int	max_lo;
+	int	min_hi;
+	int	min_lo;
+	int	passages;
 }			t_index;
+
+typedef struct s_median
+{
+	int					med;
+	int					min;
+	int					max;
+	struct s_median		*next;
+}				t_med;
 
 // operations possibles
 void	swap(t_stack **head, char who);
@@ -64,6 +73,7 @@ void	ft_sort_init(t_stack *a, int ac);
 // gestion des erreurs et free
 void	ft_error_handler(int error);
 void	ft_free_list(t_stack *a);
+void	ft_free_list_med(t_med *head);
 void	ft_operations_counter(char *op, char who, int swtch);
 void	ft_fini(t_stack *a, t_stack *b);
 
@@ -96,22 +106,16 @@ int		from_bot(t_stack **head, int num);
 int		ft_find_shortest_path(t_stack *head, int num);
 
 // gestion du sort pour toute liste superieure a 11 elements
-void	ft_quick_sort_hub(t_stack **a, t_stack **b);
-void	ft_quick_sort_first_part(t_stack **a, t_stack **b);
-void	ft_quick_sort_second_part(t_stack **a, t_stack **b);
+void	ft_quick_sort(t_stack **a, t_stack **b);
 
+// assignation des index
+t_index	ft_set_indexes_first_step(t_stack **head);
+t_index	ft_set_indexes_step(t_index s);
+t_index	ft_set_indexes_last_step(t_index s, t_stack *head);
 
 // gestion des mouvements de la premiere partie de quick sort
-void	ft_push_to_top(t_stack **head, t_index s);
-void	ft_push_to_bottom(t_stack **head, t_index s);
-void	ft_quick_sort_step_1(t_stack **a, t_stack **b, t_index step1);
-void	ft_quick_sort_step_2(t_stack **a, t_stack **b, t_index step2);
-void	ft_quick_sort_step_3(t_stack **a, t_stack **b, t_index step3);
-void	ft_quick_sort_step_4(t_stack **a, t_stack **b, t_index step4);
-t_index	ft_set_indexes_step1(t_stack **head);
-t_index	ft_set_indexes_step2(t_stack **head, char c);
-t_index	ft_set_indexes_step3(t_index s, char c);
-t_index	ft_set_indexes_step4(t_stack **head, char c);
+void	ft_transfer_to_b(t_stack **a, t_stack **b, t_index s);
+void	ft_bring_back_to_a(t_stack **a, t_stack **b);
 
 // utilitaires pour le quick sort
 int		max_index(t_stack *head);
@@ -121,5 +125,6 @@ int		ft_next_index(t_stack *head);
 void	ft_reassort_a(t_stack **a, t_stack **b, t_index s);
 void	ft_reassort_a_and_b(t_stack **a, t_stack **b, t_index s, t_index t);
 void	ft_empty_a(t_stack **a, t_stack **b);
+void	ft_reassemble_init(t_stack **a, t_stack **b);
 
 #endif
