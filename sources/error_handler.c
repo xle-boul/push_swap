@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:54:24 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/20 22:04:57 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:04:30 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	ft_check_arguments(char *str)
 			j++;
 		}
 		if (check != 1)
-			ft_error_handler(1);
+			ft_error_handler(1, NULL);
 		i++;
 	}
 	return (0);
 }
 
-int	ft_check_doubles(int *ls, int count)
+void	ft_check_doubles(int *ls, int count)
 {
 	int	i;
 	int	j;
@@ -56,13 +56,12 @@ int	ft_check_doubles(int *ls, int count)
 			j++;
 		}
 		if (doubles != 0)
-			ft_error_handler(2);
+			ft_error_handler(2, ls);
 		i++;
 	}
-	return (0);
 }
 
-void	ft_error_handler(int error)
+void	ft_error_handler(int error, int *ls)
 {
 	if (error == 0)
 		ft_printf("Error\nPlease insert more than one number as argument\n");
@@ -71,8 +70,18 @@ void	ft_error_handler(int error)
 	if (error == 2)
 		ft_printf("Error\nPlease make sure every number is unique\n");
 	if (error == 3)
-		ft_printf("Error\nDidn't bring back correctly from B\n");
+		ft_printf("Error\nAll numbers are NOT in scope (int)\n");
 	if (error == 4)
-		ft_printf("Error\n>Ta mere\n");
+		ft_printf("Error\nmalloc failed\n");
+	if (ls != NULL)
+		free(ls);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_error_handler_free(int error, t_stack *head)
+{
+	if (error == 0)
+		ft_printf("Error\nmalloc failed at ft_list_create\n");
+	ft_free_list(head);
 	exit(EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xle-boul <xle-boul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:49:49 by xle-boul          #+#    #+#             */
-/*   Updated: 2021/11/23 16:53:43 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:04:11 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 # define FLAGS "0# +-"
 # define NUMBERS "123456789"
 # define PRECISION "."
+
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define YELLOW	"\033[1;33m"
+# define BLUE "\033[1;34m"
+# define MAGENTA "\033[1;35m"
+# define CYAN "\033[1;36m"
+# define RESET "\033[0m"
+# define END "\e[0m"
 
 typedef struct s_tot
 {

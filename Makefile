@@ -6,7 +6,7 @@
 #    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 11:16:31 by xle-boul          #+#    #+#              #
-#    Updated: 2022/05/02 08:43:55 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/24 10:31:47 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,6 @@ CHK_OBJ_DIR := obj_checker
 
 SRC_FILES := $(filter-out $(SRC_DIR)/quick_sort_tests.c $(SRC_DIR)/merge_tests.c, $(wildcard $(SRC_DIR)/*.c)) push_swap.c
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
-SRC_FILES_TEST := $(filter-out $(SRC_DIR)/quick_sort_tests.c, $(wildcard $(SRC_DIR)/*.c))
-OBJ_FILES_TEST := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_TEST)/%.o,$(SRC_FILES_TEST))
-SRC_FILES_QSTEST := $(filter-out $(SRC_DIR)/merge_tests.c, $(wildcard $(SRC_DIR)/*.c))
-OBJ_FILES_QSTEST := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_TEST)/%.o,$(SRC_FILES_QSTEST))
 SRC_FILES_GEN := $(filter-out $(NAME).c, $(wildcard *.c))
 OBJ_FILES_GEN := $(patsubst ./%.c,$(OBJ_DIR)/%.o,$(SRC_FILES_GEN))
 SRC_CHK := $(wildcard $(CHK_DIR)/*.c) checker.c
@@ -72,16 +68,6 @@ $(NAME): $(OBJ_FILES) $(LIB)
 	@$(CC) $(FLAGS) $(OBJ_FILES) $(LIB) -I $(INCLUDES) -o $@
 	@printf "\n$(GREEN)push_swap compiled!\n$(END)Run program: $(RED)./push_swap <numbers>\n$(END)"
 
-$(NAME_TEST): $(OBJ_FILES_TEST) $(LIB)
-	@printf "\n$(YELLOW)Compiling test...$(END)\n"
-	@$(CC) $(OBJ_FILES_TEST) $(LIB) -I $(INCLUDES) -o $@
-	@printf "\n$(GREEN)test compiled!\n$(END)Run program: $(RED)./test\n$(END)"
-
-$(NAME_QSTEST): $(OBJ_FILES_QSTEST) $(LIB)
-	@printf "\n$(YELLOW)Compiling test...$(END)\n"
-	@$(CC) $(OBJ_FILES_QSTEST) $(LIB) -I $(INCLUDES) -o $@
-	@printf "\n$(GREEN)test compiled!\n$(END)Run program: $(RED)./test\n$(END)"
-
 $(NAME_CHK): $(OBJ_CHK) $(LIB)
 	@printf "\n$(YELLOW)Compiling checker...$(END)\n"
 	@$(CC) $(FLAGS) $(OBJ_CHK) $(LIB) -I $(INCLUDES) -o $@
@@ -96,11 +82,6 @@ $(LIB):
 	@mv $(LIB_DIR)$(LIB) .
 
 all: $(NAME)
-
-clean_test:
-	@printf "\n$(YELLOW)Cleaning objects and $(NAME_TEST)...$(END)\n"
-	@rm -f $(NAME_TEST)
-	@rm -rf $(OBJ_DIR_TEST)
 
 clean:
 	@printf "\n$(YELLOW)Cleaning objects and $(NAME)...$(END)\n"
@@ -131,7 +112,7 @@ checker_fclean: bonus_clean
 bonus_re: bonus_fclean bonus
 
 norm:
-	@norminette *.c $(filter-out $(SRC_DIR)/test.c, $(wildcard $(SRC_DIR)/*.c)) ft_printf includes checker
+	@norminette *.c $(wildcard $(SRC_DIR)/*.c) ft_printf includes checker
 
 clean_all: fclean bonus_fclean
 

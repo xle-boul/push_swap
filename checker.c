@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort_algo.c                                  :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 11:05:28 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/23 11:58:14 by xle-boul         ###   ########.fr       */
+/*   Created: 2022/05/24 22:49:26 by xle-boul          #+#    #+#             */
+/*   Updated: 2022/05/24 22:55:58 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker.h"
 
-void	ft_quick_sort(t_stack **a, t_stack **b)
+// recoit en argument la liste de nombres et ensuite recoit
+// les operations separees par un \n
+// applique les operations au fur et a mesure et retourne
+// OK si la liste est en ordre
+// KO si elle ne l'est pas
+
+int	main()
 {
-	t_index	step;
-	int		passages;
-
-	step = ft_set_indexes_first_step(a);
-	ft_transfer_to_b(a, b, step);
-	passages = step.passages / 2 - 2;
-	while (passages-- > 0)
-	{
-		step = ft_set_indexes_step(step);
-		ft_transfer_to_b(a, b, step);
-	}
-	step = ft_set_indexes_last_step(step, *a);
-	ft_transfer_to_b(a, b, step);
+	
 }

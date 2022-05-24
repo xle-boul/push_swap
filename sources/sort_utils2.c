@@ -1,52 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort_utils.c                                 :+:      :+:    :+:   */
+/*   sort_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:55:04 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/10 21:43:23 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:17:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 // retourne l'index de valeur maximale de la liste passee en argument
-int	max_index(t_stack *head)
+int	max(t_stack *head)
 {
 	t_stack	*tmp;
-	int		max_index;
+	int		max;
 
 	tmp = head;
-	max_index = 0;
+	max = 0;
 	while (tmp)
 	{
-		if (tmp->idx > max_index)
-			max_index = tmp->idx;
+		if (tmp->idx > max)
+			max = tmp->idx;
 		tmp = tmp->next;
 	}
-	return (max_index);
+	return (max);
 }
 
 // retourne l'index de valeur minimale de la liste passee en argument
-int	min_index(t_stack *head)
+int	min(t_stack *head)
 {
 	t_stack	*tmp;
-	int		min_index;
+	int		min;
 
 	tmp = head;
-	min_index = max_index(head);
+	min = max(head);
 	while (tmp)
 	{
-		if (tmp->idx < min_index)
-			min_index = tmp->idx;
+		if (tmp->idx < min)
+			min = tmp->idx;
 		tmp = tmp->next;
 	}
-	return (min_index);
+	return (min);
 }
 
-// retourne la valeur de l'index du dernier element de la liste passee en argument
+// retourne la valeur de l'index du dernier element de la
+// liste passee en argument
 int	last_index(t_stack *head)
 {
 	t_stack	*tmp;
@@ -59,7 +60,7 @@ int	last_index(t_stack *head)
 
 // retourne la valeur de l'index du prochain element (ordre croissant) de
 // la liste passee en argument
-int	ft_next_index(t_stack *head)
+int	next_index(t_stack *head)
 {
 	t_stack	*tmp;
 	int		count;
@@ -67,7 +68,7 @@ int	ft_next_index(t_stack *head)
 
 	tmp = head;
 	count = 0;
-	n = max_index(tmp);
+	n = max(tmp);
 	while (1)
 	{
 		if (tmp->idx == n)

@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 16:06:34 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/10 21:08:48 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:19:42 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 // et incrementant de 1 a chaque element
 void	ft_assign_indexes(t_stack **head)
 {
-	int		i;
-	int		num;
-	t_stack	*tmp;
+	unsigned int	i;
+	int				num;
+	t_stack			*tmp;
 
 	i = 0;
 	tmp = *head;
-	num = min(*head);
+	num = min_value(*head);
 	while (tmp)
 	{
 		if (tmp->num == num)
@@ -41,13 +41,13 @@ void	ft_assign_indexes(t_stack **head)
 
 // cree un element de la liste chainee avec son numero
 // correspondant
-t_stack	*ft_create_new_node(int num)
+t_stack	*ft_create_new_node(int num, t_stack *head)
 {
 	t_stack	*node;
 
 	node = malloc(sizeof(t_stack));
 	if (!node)
-		ft_error_handler(0);
+		ft_error_handler_free(0, head);
 	node->num = num;
 	node->idx = 0;
 	node->next = NULL;
@@ -86,7 +86,7 @@ t_stack	*ft_arg_to_chained_list(int *ls, int count)
 	i = 0;
 	while (i < count)
 	{
-		new = ft_create_new_node(ls[i]);
+		new = ft_create_new_node(ls[i], head);
 		ft_add_at_tail(&head, new);
 		i++;
 	}
