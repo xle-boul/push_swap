@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_end.c                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 11:56:53 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 15:45:48 by xle-boul         ###   ########.fr       */
+/*   Created: 2021/12/12 13:55:48 by xle-boul          #+#    #+#             */
+/*   Updated: 2021/12/14 20:14:43 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-// sort du programme proprement, en liberant la memoire allouee
-void	ft_fini(t_stack *a, t_stack *b)
-{
-	ft_free_list(a);
-	ft_free_list(b);
-	exit (EXIT_SUCCESS);
-}
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
+char	*ft_mallocable(char *patch);
+
+#endif

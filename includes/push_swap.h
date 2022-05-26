@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:56:44 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 16:16:53 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/25 22:11:05 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define SWEET_SPOT 27
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+
 // sert a creer et gerer la liste chainee des elements dans A et B
 typedef struct s_stack
 {
@@ -49,9 +50,9 @@ void	swap(t_stack **head, char who);
 void	push(t_stack **head_dest, t_stack **head_orig, char who);
 void	rotate(t_stack **head, char who);
 void	reverse_rotate(t_stack **head, char who);
-void	swapswap(t_stack **a, t_stack **b);
-void	rotrot(t_stack **a, t_stack **b);
-void	revrotrot(t_stack **a, t_stack **b);
+void	swapswap(t_stack **a, t_stack **b, int swtch);
+void	rotrot(t_stack **a, t_stack **b, int swtch);
+void	revrotrot(t_stack **a, t_stack **b, int swtch);
 
 // lire les arguments et les traduire en liste chainee
 t_stack	*ft_arg_to_chained_list(int *ls, int count);
@@ -85,7 +86,7 @@ int		ft_find_shortest_path(t_stack *head, int num);
 // prints
 void	ft_print_both_lists(t_stack *a, t_stack *b);
 void	ft_print_list_index(t_stack *head);
-void	ft_print_list(t_stack *head);
+void	ft_print_list(t_stack *head, char color);
 
 // gestion du sort pour toute liste inferieure a 28 elements
 void	ft_sort_init(t_stack *a);

@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_end.c                                         :+:      :+:    :+:   */
+/*   operations_counter_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 11:56:53 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 15:45:48 by xle-boul         ###   ########.fr       */
+/*   Created: 2022/04/09 12:25:08 by xle-boul          #+#    #+#             */
+/*   Updated: 2022/05/26 00:45:25 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// sort du programme proprement, en liberant la memoire allouee
-void	ft_fini(t_stack *a, t_stack *b)
+// compte le nombre d'operations effectuees et les imprime sur
+// la sortie standard
+void	ft_operations_counter(char *op, char who, int swtch)
 {
-	ft_free_list(a);
-	ft_free_list(b);
-	exit (EXIT_SUCCESS);
+	static int	count = 0;
+
+	if (swtch == 0)
+	{
+		if (who == 'a')
+			ft_printf("%s%c\n", op, who);
+		else if (who == 'b')
+			ft_printf("%s%c\n", op, who);
+		count++;
+	}
+	else if (swtch == 1)
+	{
+		ft_printf("%s\n", op);
+		count++;
+	}
+	else
+		ft_printf("Done in %d operations\n", count);
 }
-
-

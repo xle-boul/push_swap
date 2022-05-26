@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_end.c                                         :+:      :+:    :+:   */
+/*   check_end_checker_no_flags_bonus .c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 11:56:53 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 15:45:48 by xle-boul         ###   ########.fr       */
+/*   Created: 2022/05/25 11:49:34 by xle-boul          #+#    #+#             */
+/*   Updated: 2022/05/26 12:17:20 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
-// sort du programme proprement, en liberant la memoire allouee
-void	ft_fini(t_stack *a, t_stack *b)
+void	ft_end_checker_no_flags(char *line, t_stack **a, t_stack **b)
 {
-	ft_free_list(a);
-	ft_free_list(b);
-	exit (EXIT_SUCCESS);
+	if (ft_check_if_sorted(*a) == 0 && *b == NULL)
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	ft_free_list(*a);
+	ft_free_list(*b);
+	if (line != NULL)
+		free(line);
+	exit(EXIT_SUCCESS);
 }
-
-

@@ -6,7 +6,7 @@
 #    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 11:16:31 by xle-boul          #+#    #+#              #
-#    Updated: 2022/05/24 10:31:47 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/25 23:38:15 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,87 +20,92 @@ RESET	= \033[0m
 END		= \e[0m
 
 NAME = push_swap
-NAME_TEST = test
-NAME_QSTEST = qstest
-NAME_GEN = generator
-
 NAME_CHK = checker
+NAME_CHK_BONUS = checker_bonus
 
 SRC_DIR := sources
-CHK_DIR := checker
+CHK_DIR := sources
+BONUS_DIR := bonus
 
-OBJ_DIR := obj
-OBJ_DIR_TEST := obj_test
+OBJ_DIR := obj_ps
 CHK_OBJ_DIR := obj_checker
+BONUS_OBJ_DIR := obj_bonus
 
-SRC_FILES := $(filter-out $(SRC_DIR)/quick_sort_tests.c $(SRC_DIR)/merge_tests.c, $(wildcard $(SRC_DIR)/*.c)) push_swap.c
+SRC_FILES := $(filter-out $(wildcard $(SRC_DIR)/get_next_line* $(SRC_DIR)/check*),$(wildcard $(SRC_DIR)/*.c))
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
-SRC_FILES_GEN := $(filter-out $(NAME).c, $(wildcard *.c))
-OBJ_FILES_GEN := $(patsubst ./%.c,$(OBJ_DIR)/%.o,$(SRC_FILES_GEN))
-SRC_CHK := $(wildcard $(CHK_DIR)/*.c) checker.c
+SRC_CHK := $(filter-out $(wildcard $(CHK_DIR)/sort_* $(CHK_DIR)/push_swap.c),$(wildcard $(SRC_DIR)/*.c))
 OBJ_CHK := $(patsubst $(CHK_DIR)/%.c,$(CHK_OBJ_DIR)/%.o,$(SRC_CHK))
+SRC_BONUS := $(wildcard $(BONUS_DIR)/*.c)
+OBJ_BONUS := $(patsubst $(BONUS_DIR)/%.c,$(BONUS_OBJ_DIR)/%.o,$(SRC_BONUS))
 
 CC = gcc
-FLAGS = -Werror -Wall -Wextra -g3
+FLAGS = -Werror -Wall -Wextra
 
 INCLUDES = includes
 HEADER = push_swap.h
 HEADER_CHK = checker.h
+GNL = get_next_line.h
 
 LIB_DIR = ft_printf/
 LIB_OBJS_DIR = ft_printf/objs/
 LIB = libftprintf.a
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(INCLUDES)/$(HEADER)
+all: $(NAME) $(NAME_CHK)
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(INCLUDES)/
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(FLAGS) -c -o $@ $<
 
-$(OBJ_DIR_TEST)/%.o : $(SRC_DIR)/%.c $(INCLUDES)/$(HEADER)
-	@mkdir -p $(OBJ_DIR_TEST)
-	@$(CC) -c -o $@ $<
-
-$(CHK_OBJ_DIR)/%.o : $(CHK_DIR)/%.c $(INCLUDES)/$(HEADER_CHK)
+$(CHK_OBJ_DIR)/%.o : $(CHK_DIR)/%.c $(INCLUDES)/
 	@mkdir -p $(CHK_OBJ_DIR)
 	@$(CC) $(FLAGS) -c -o $@ $<
 
+$(BONUS_OBJ_DIR)/%.o : $(BONUS_DIR)/%.c $(INCLUDES)/
+	@mkdir -p $(BONUS_OBJ_DIR)
+	$(CC) $(FLAGS) -c -o $@ $<
+
 $(NAME): $(OBJ_FILES) $(LIB)
 	@printf "\n$(YELLOW)Compiling push_swap...$(END)\n"
-	@$(CC) $(FLAGS) $(OBJ_FILES) $(LIB) -I $(INCLUDES) -o $@
+	@$(CC) $(FLAGS) $(OBJ_FILES) $(LIB) -I $(INCLUDES)/ -o $@
 	@printf "\n$(GREEN)push_swap compiled!\n$(END)Run program: $(RED)./push_swap <numbers>\n$(END)"
 
 $(NAME_CHK): $(OBJ_CHK) $(LIB)
 	@printf "\n$(YELLOW)Compiling checker...$(END)\n"
-	@$(CC) $(FLAGS) $(OBJ_CHK) $(LIB) -I $(INCLUDES) -o $@
+	@$(CC) $(FLAGS) $(OBJ_CHK) $(LIB) -I $(INCLUDES)/ -o $@
 	@printf "\n$(GREEN)checker compiled!\n$(END)Run program: $(RED)./checker$(END)"
-	
-$(NAME_GEN): $(OBJ_FILES_GEN) $(LIB)
-	@$(CC) $(FLAGS) $(OBJ_FILES_GEN) $(LIB) -I $(INCLUDES) -o $@
+
+$(NAME_CHK_BONUS): $(OBJ_BONUS) $(LIB)
+	@printf "\n$(YELLOW)Compiling checker_bonus...$(END)\n"
+	$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) -I $(INCLUDES)/ -o $@
+	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker$(END)"
 
 $(LIB):
 	@printf "\n$(YELLOW)Compiling $(LIB)...$(END)\n"
 	@make bonus --no-print-directory $(LIB) -C $(LIB_DIR)
 	@mv $(LIB_DIR)$(LIB) .
 
-all: $(NAME)
+bonus: $(NAME_CHK_BONUS)
 
 clean:
-	@printf "\n$(YELLOW)Cleaning objects and $(NAME)...$(END)\n"
-	@rm -f $(NAME)
+	@printf "\n$(YELLOW)Cleaning objects...$(END)\n"
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(CHK_OBJ_DIR)
+	@rm -rf $(BONUS_OBJ_DIR)
+	@printf "$(GREEN)Done!$(END)\n"
 
 fclean: clean
-	@printf "\n$(YELLOW)Cleaning $(LIB) and $(LIB_MLX)...$(END)\n"
+	@printf "\n$(YELLOW)Cleaning $(NAME), $(NAME_CHK), $(LIB) and libft.a...$(END)\n"
 	@rm -f $(LIB)
+	@rm -f $(NAME)
+	@rm -f $(NAME_CHK)
+	@rm -f $(NAME_CHK_BONUS)
 	@make --no-print-directory -C $(LIB_DIR) fclean
+	@printf "$(GREEN)All clean!$(END)\n"
 
 re: fclean $(NAME)
 
-checker: $(NAME_CHK)
-
 checker_clean:
 	@printf "\n$(YELLOW)Cleaning objects and $(NAME_CHK)...$(END)\n"
-	@rm -f $(NAME_CHK)
-	@rm -rf $(CHK_OBJ_DIR)
 
 checker_fclean: bonus_clean
 	@printf "\n$(YELLOW)Cleaning $(LIB) and $(LIB_MLX)...$(END)\n"

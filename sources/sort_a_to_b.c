@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:56:49 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 10:30:19 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:44:44 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_transfer_to_b(t_stack **a, t_stack **b, t_index s)
 			{
 				if (*a != NULL && !(s.min_lo <= (*a)->idx
 						&& (*a)->idx <= s.max_hi))
-					rotrot(a, b);
+					rotrot(a, b, 0);
 				else
 					rotate(b, 'b');
 			}

@@ -6,13 +6,11 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 12:25:08 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 22:48:36 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/25 11:56:18 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-
 
 // compte le nombre d'operations effectuees et les imprime sur
 // la sortie standard

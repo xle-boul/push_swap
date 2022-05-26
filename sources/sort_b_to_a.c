@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:14:40 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 16:27:31 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:46:17 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_move_to_target(t_stack **a, t_stack **b, int target, int path)
 		{
 			push(a, b, 'a');
 			if (path > 0 && (*b)->idx != target)
-				rotrot(a, b);
+				rotrot(a, b, 0);
 			else
 				rotate(a, 'a');
 		}
@@ -62,7 +62,7 @@ void	ft_bring_back_to_a(t_stack **a, t_stack **b)
 			return ;
 		if (last_index(*a) != max(*a)
 			&& ft_find_shortest_path(*b, max(*b) < 0))
-			revrotrot(a, b);
+			revrotrot(a, b, 0);
 		else if (last_index(*a) != max(*a))
 			reverse_rotate(a, 'a');
 	}
