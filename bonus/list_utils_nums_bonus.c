@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils_nums.c                                  :+:      :+:    :+:   */
+/*   list_utils_nums_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 11:02:49 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 16:34:15 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:13:03 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
 // retourne la longueur de la liste donnee en argument
 int	list_length(t_stack *head)

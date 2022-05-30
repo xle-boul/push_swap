@@ -1,48 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils_prints.c                                :+:      :+:    :+:   */
+/*   list_utils_prints_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 21:19:12 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 22:14:22 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:09:46 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
-void	ft_print_list(t_stack *head, char color)
+void	ft_print_list(t_stack *head, char color, t_bool bl)
 {
 	if (!head)
-		ft_printf(YELLOW"Empty"END);
+	{
+		if (bl.color == true)
+			ft_printf(YELLOW"Empty"END);
+		else
+			ft_printf("Empty");
+	}
 	while (head != NULL)
 	{
 		if (color == 'A')
 			ft_printf(BLUE"%d "END, head->num);
 		else if (color == 'B')
 			ft_printf(MAGENTA"%d "END, head->num);
+		else
+			ft_printf("%d ", head->num);
 		head = head->next;
 	}
 	ft_printf("\n");
 }
 
-void	ft_print_list_index(t_stack *head)
+void	ft_print_both_lists(t_stack *a, t_stack *b, t_bool bl)
 {
-	if (!head)
-		ft_printf("Empty\n");
-	while (head != NULL)
+	if (bl.color == true)
 	{
-		ft_printf("%2d ", head->idx);
-		head = head->next;
+		ft_printf(BLUE"A = "END);
+		ft_print_list(a, 'A', bl);
+		ft_printf(MAGENTA"B = "END);
+		ft_print_list(b, 'B', bl);
 	}
-	ft_printf("\n");
-}
-
-void	ft_print_both_lists(t_stack *a, t_stack *b)
-{
-	ft_printf(BLUE"A = "END);
-	ft_print_list(a, 'A');
-	ft_printf(MAGENTA"B = ");
-	ft_print_list(b, 'B');
+	else
+	{
+		ft_printf("A = ");
+		ft_print_list(a, 'C', bl);
+		ft_printf("B = ");
+		ft_print_list(b, 'C', bl);	
+	}
 }

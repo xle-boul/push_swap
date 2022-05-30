@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils_positions.c                             :+:      :+:    :+:   */
+/*   list_utils_positions_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:42:28 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 22:02:14 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:12:58 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
 // verifie que l'element portant la valeur num est dans la liste
 // passee en argument

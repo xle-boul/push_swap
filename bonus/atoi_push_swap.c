@@ -6,11 +6,11 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 14:18:32 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 16:34:58 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:13:37 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
 typedef struct s_atoi
 {

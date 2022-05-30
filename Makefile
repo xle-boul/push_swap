@@ -6,7 +6,7 @@
 #    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 11:16:31 by xle-boul          #+#    #+#              #
-#    Updated: 2022/05/25 23:38:15 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/26 22:12:09 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(CHK_OBJ_DIR)/%.o : $(CHK_DIR)/%.c $(INCLUDES)/
 
 $(BONUS_OBJ_DIR)/%.o : $(BONUS_DIR)/%.c $(INCLUDES)/
 	@mkdir -p $(BONUS_OBJ_DIR)
-	$(CC) $(FLAGS) -c -o $@ $<
+	@$(CC) $(FLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ_FILES) $(LIB)
 	@printf "\n$(YELLOW)Compiling push_swap...$(END)\n"
@@ -72,12 +72,12 @@ $(NAME): $(OBJ_FILES) $(LIB)
 $(NAME_CHK): $(OBJ_CHK) $(LIB)
 	@printf "\n$(YELLOW)Compiling checker...$(END)\n"
 	@$(CC) $(FLAGS) $(OBJ_CHK) $(LIB) -I $(INCLUDES)/ -o $@
-	@printf "\n$(GREEN)checker compiled!\n$(END)Run program: $(RED)./checker$(END)"
+	@printf "\n$(GREEN)checker compiled!\n$(END)Run program: $(RED)./checker <numbers> then insert operations.$(END)"
 
 $(NAME_CHK_BONUS): $(OBJ_BONUS) $(LIB)
 	@printf "\n$(YELLOW)Compiling checker_bonus...$(END)\n"
-	$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) -I $(INCLUDES)/ -o $@
-	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker$(END)"
+	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) -I $(INCLUDES)/ -o $@
+	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker_bonus <numbers> then insert operations.$(END)\nAvailable flags:\n\t$(YELLOW)-n: shows the amount of operations done\n\t$(END)$(MAGENTA)-p: prints the stacks in between each operation call\n\t$(END)$(GREEN)-c: adds colors to the output\n$(END)"
 
 $(LIB):
 	@printf "\n$(YELLOW)Compiling $(LIB)...$(END)\n"
@@ -104,34 +104,19 @@ fclean: clean
 
 re: fclean $(NAME)
 
-checker_clean:
-	@printf "\n$(YELLOW)Cleaning objects and $(NAME_CHK)...$(END)\n"
-
-checker_fclean: bonus_clean
-	@printf "\n$(YELLOW)Cleaning $(LIB) and $(LIB_MLX)...$(END)\n"
-	@rm -rf $(LIB)
-	@rm -f $(LIB_MLX)
-	@make --no-print-directory -C $(LIB_DIR) fclean
-	@make --no-print-directory -C $(MLX_DIR) clean
-	
-bonus_re: bonus_fclean bonus
-
 norm:
-	@norminette *.c $(wildcard $(SRC_DIR)/*.c) ft_printf includes checker
-
-clean_all: fclean bonus_fclean
+	@norminette
 
 help:
-	@printf "$(RED)Makefile rules:$(END)\n\n"
+	@printf "$(RED)\t\t\tMakefile rules:$(END)\n\n"
 	@printf "$(CYAN)'make'$(END): \t\tCompile mandatory part\n"
-	@printf "$(CYAN)'make clean'$(END): \t\tGet rid of mandatory objects and program\n"
-	@printf "$(CYAN)'make fclean'$(END): \t\tGet rid of mandatory objects, program and libraries\n"
+	@printf "$(CYAN)'make push_swap'$(END): \tCompile mandatory part but only push_swap\n"
+	@printf "$(CYAN)'make checker'$(END): \tCompile mandatory part but only checker\n"
+	@printf "$(CYAN)'make clean'$(END): \t\tGet rid of objects\n"
+	@printf "$(CYAN)'make fclean'$(END): \t\tGet rid of objects, programs and libraries\n"
 	@printf "$(CYAN)'make re'$(END): \t\tGet rid of everything and recompile mandatory part\n\n"
-	@printf "$(MAGENTA)'make bonus'$(END): \t\tCompile bonus part\n"
-	@printf "$(MAGENTA)'make bonus_clean'$(END): \tGet rid of bonus objects and program\n"
-	@printf "$(MAGENTA)'make bonus_fclean'$(END): \tGet rid of bonus objects, program and libraries\n"
-	@printf "$(MAGENTA)'make bonus_re'$(END): \tGet rid of everything and recompile bonus part\n\n"
+	@printf "$(MAGENTA)'make bonus'$(END): \t\tCompile bonus part\n\n"
 	@printf "$(YELLOW)'make norm'$(END): \t\tCheck norminette\n"
-	@printf "$(YELLOW)'clean_all'$(END): \t\tReset folder\n"
 
-.PHONY: clean fclean bonus_re bonus_clean bonus_fclean re clean-all norm help
+
+.PHONY: all bonus clean fclean re norm help

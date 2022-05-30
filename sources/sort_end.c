@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:56:53 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 15:45:48 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:20:16 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,3 @@ void	ft_fini(t_stack *a, t_stack *b)
 	ft_free_list(b);
 	exit (EXIT_SUCCESS);
 }
-
-

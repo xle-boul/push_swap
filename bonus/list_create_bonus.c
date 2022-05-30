@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_create.c                                      :+:      :+:    :+:   */
+/*   list_create_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 16:06:34 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 16:19:42 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:13:07 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
 // transforme les valeurs de la liste en index, partant de 0
 // et incrementant de 1 a chaque element

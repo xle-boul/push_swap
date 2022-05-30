@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:56:44 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 22:41:51 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:21:06 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	swap(t_stack **head, char who);
 void	push(t_stack **head_dest, t_stack **head_orig, char who);
 void	rotate(t_stack **head, char who);
 void	reverse_rotate(t_stack **head, char who);
-void	swapswap(t_stack **a, t_stack **b,int swtch);
+void	swapswap(t_stack **a, t_stack **b, int swtch);
 void	rotrot(t_stack **a, t_stack **b, int swtch);
 void	revrotrot(t_stack **a, t_stack **b, int swtch);
 

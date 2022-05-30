@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_simple.c                                :+:      :+:    :+:   */
+/*   operations_simple_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:54:08 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 21:50:42 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:12:46 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
 void	swap(t_stack **head, char who)
 {

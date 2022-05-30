@@ -6,15 +6,15 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 12:25:08 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/26 00:45:25 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:41:08 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker_bonus.h"
 
 // compte le nombre d'operations effectuees et les imprime sur
 // la sortie standard
-void	ft_operations_counter(char *op, char who, int swtch)
+int	ft_operations_counter(char *op, char who, int swtch)
 {
 	static int	count = 0;
 
@@ -24,13 +24,13 @@ void	ft_operations_counter(char *op, char who, int swtch)
 			ft_printf("%s%c\n", op, who);
 		else if (who == 'b')
 			ft_printf("%s%c\n", op, who);
-		count++;
+		if (who == 'c' || who == 'a' || who == 'b')
+			count++;
 	}
 	else if (swtch == 1)
 	{
 		ft_printf("%s\n", op);
 		count++;
 	}
-	else
-		ft_printf("Done in %d operations\n", count);
+	return (count);
 }
