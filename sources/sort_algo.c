@@ -6,13 +6,13 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:05:28 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 10:01:03 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_sort(t_stack **a, t_stack **b)
+void	ft_sort(t_stk **a, t_stk **b)
 {
 	t_index	step;
 	int		passages;

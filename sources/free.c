@@ -6,15 +6,15 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 21:37:50 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/22 09:02:10 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_free_list(t_stack *head)
+void	ft_free_list(t_stk *head)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 
 	if (!head)
 		return ;

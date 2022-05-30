@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:42:28 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/27 21:12:58 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 // verifie que l'element portant la valeur num est dans la liste
 // passee en argument
-int	ft_is_in_list(t_stack **head, int num)
+int	ft_is_in_list(t_stk **head, int num)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 
 	tmp = *head;
 	while (tmp->next)
@@ -31,9 +31,9 @@ int	ft_is_in_list(t_stack **head, int num)
 }
 
 // retourne le dernier element de la liste chainee passee en argument
-t_stack	*last_node(t_stack **head)
+t_stk	*last_node(t_stk **head)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 
 	tmp = *head;
 	if (!tmp)
@@ -46,9 +46,9 @@ t_stack	*last_node(t_stack **head)
 }
 
 // retourne le premier element de la liste chainee passee en argument
-t_stack	*first_node(t_stack **head)
+t_stk	*first_node(t_stk **head)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 
 	tmp = *head;
 	while (tmp->prev)
@@ -57,9 +57,9 @@ t_stack	*first_node(t_stack **head)
 }
 
 // verifie si les elements d'une liste sont classes en ordre croissant
-int	ft_check_if_sorted(t_stack *head)
+int	ft_check_if_sorted(t_stk *head)
 {
-	t_stack	*temp;
+	t_stk	*temp;
 
 	if (head == NULL || head->next == NULL)
 		return (1);

@@ -6,21 +6,21 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:49:12 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 22:20:34 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:08:48 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-void	ft_move_from_input_2(char *line, t_stack **a, t_stack **b)
+void	ft_move_from_input_2(char *line, t_stk **a, t_stk **b)
 {
-	if (line[0] == '\0')
+	if (line == NULL || line[0] == '\0')
 		ft_end_checker(line, a, b);
 	else
-		ft_error_handler_checker(line, a, b);
+		ft_bad_input(line, a, b);
 }
 
-void	ft_move_from_input(char *line, t_stack **a, t_stack **b)
+void	ft_move_from_input(char *line, t_stk **a, t_stk **b)
 {
 	if (ft_strncmp(line, "sa", 2) == 0 && ft_strlen(line) == 2)
 		swap(a, 'c');
@@ -48,18 +48,20 @@ void	ft_move_from_input(char *line, t_stack **a, t_stack **b)
 		ft_move_from_input_2(line, a, b);
 }
 
-void	ft_listen_to_stdin(t_stack *a)
+void	ft_listen_to_stdin(t_stk *a)
 {
-	t_stack	*b;
+	t_stk	*b;
 	char	*line;
 
 	b = NULL;
+	line = NULL;
 	while (1)
 	{
 		line = get_next_line(STDIN_FILENO);
-		ft_move_from_input(line, &a, &b);
-		if (ft_check_if_sorted(a) == 0 && b == NULL)
-			ft_end_checker(line, &a, &b);
+		if (line != NULL)
+			ft_move_from_input(line, &a, &b);
+		else
+			ft_move_from_input_2(line, &a, &b);
 		free(line);
 	}
 }

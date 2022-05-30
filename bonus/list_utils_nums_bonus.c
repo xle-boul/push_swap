@@ -6,16 +6,16 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 11:02:49 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/27 21:13:03 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
 
 // retourne la longueur de la liste donnee en argument
-int	list_length(t_stack *head)
+int	list_length(t_stk *head)
 {
-	t_stack	*temp;
+	t_stk	*temp;
 	int		len;
 
 	temp = head;
@@ -29,9 +29,9 @@ int	list_length(t_stack *head)
 }
 
 // retourne la valeur maximal de la chaine passee en argument
-int	max_value(t_stack *head)
+int	max_value(t_stk *head)
 {
-	t_stack	*temp;
+	t_stk	*temp;
 	int		max_value;
 
 	temp = head;
@@ -46,9 +46,9 @@ int	max_value(t_stack *head)
 }
 
 // retourne la valeur minimale de la chaine passee en argument
-int	min_value(t_stack *head)
+int	min_value(t_stk *head)
 {
-	t_stack	*temp;
+	t_stk	*temp;
 	int		min_value;
 
 	temp = head;
@@ -63,9 +63,9 @@ int	min_value(t_stack *head)
 }
 
 // retourne la valeur du prochain element (ordre croissant) de la liste
-int	next_num(t_stack *head, int num)
+int	next_num(t_stk *head, int num)
 {
-	t_stack	*temp;
+	t_stk	*temp;
 	int		next_number;
 
 	if (!head)

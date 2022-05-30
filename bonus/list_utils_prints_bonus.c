@@ -6,13 +6,13 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 21:19:12 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:09:46 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:24:49 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
 
-void	ft_print_list(t_stack *head, char color, t_bool bl)
+void	ft_print_list(t_stk *head, char color, t_bool bl)
 {
 	if (!head)
 	{
@@ -34,7 +34,7 @@ void	ft_print_list(t_stack *head, char color, t_bool bl)
 	ft_printf("\n");
 }
 
-void	ft_print_both_lists(t_stack *a, t_stack *b, t_bool bl)
+void	ft_print_both_lists(t_stk *a, t_stk *b, t_bool bl)
 {
 	if (bl.color == true)
 	{
@@ -48,6 +48,6 @@ void	ft_print_both_lists(t_stack *a, t_stack *b, t_bool bl)
 		ft_printf("A = ");
 		ft_print_list(a, 'C', bl);
 		ft_printf("B = ");
-		ft_print_list(b, 'C', bl);	
+		ft_print_list(b, 'C', bl);
 	}
 }

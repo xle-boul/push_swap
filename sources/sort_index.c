@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:58:03 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 15:17:59 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_define_splits(int len)
 }
 
 // definit les index de la premiere phase du transfer
-t_index	ft_set_indexes_first_step(t_stack **head)
+t_index	ft_set_indexes_first_step(t_stk **head)
 {
 	t_index	step1;
 	int		len;
@@ -65,7 +65,7 @@ t_index	ft_set_indexes_step(t_index s)
 }
 
 // definit les index pour la derniere phase du transfert
-t_index	ft_set_indexes_last_step(t_index s, t_stack *head)
+t_index	ft_set_indexes_last_step(t_index s, t_stk *head)
 {
 	t_index	step;
 

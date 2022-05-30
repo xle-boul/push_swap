@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:54:24 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/27 21:13:26 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_error_handler(int error, int *ls)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_error_handler_free(int error, t_stack *head)
+void	ft_error_handler_free(int error, t_stk *head)
 {
 	if (error == 0)
 		ft_printf("Error\nmalloc failed at ft_list_create\n");

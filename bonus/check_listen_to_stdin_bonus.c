@@ -6,13 +6,13 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:49:12 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:14:58 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:25:36 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
 
-void	ft_move_from_input_2(char *line, t_stack **a, t_stack **b, t_bool bl)
+void	ft_move_from_input_2(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (line == NULL || line[0] == '\0')
 		ft_end_checker(line, a, b, bl);
@@ -20,8 +20,7 @@ void	ft_move_from_input_2(char *line, t_stack **a, t_stack **b, t_bool bl)
 		ft_error_handler_checker(line, a, b, bl);
 }
 
-
-void	ft_operations_switch_no_print(char *line, t_stack **a, t_stack **b, t_bool bl)
+void	ft_operations_switch(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (ft_strncmp(line, "sa", 2) == 0 && ft_strlen(line) == 2)
 		swap(a, 'c');
@@ -49,7 +48,7 @@ void	ft_operations_switch_no_print(char *line, t_stack **a, t_stack **b, t_bool 
 		ft_move_from_input_2(line, a, b, bl);
 }
 
-void	ft_operations_switch_print(char *line, t_stack **a, t_stack **b, t_bool bl)
+void	ft_operations_switch_print(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (ft_strncmp(line, "sa", 2) == 0 && ft_strlen(line) == 2)
 		swap(a, 'a');
@@ -77,7 +76,7 @@ void	ft_operations_switch_print(char *line, t_stack **a, t_stack **b, t_bool bl)
 		ft_move_from_input_2(line, a, b, bl);
 }
 
-void	ft_move_from_input(char *line, t_stack **a, t_stack **b, t_bool bl)
+void	ft_move_from_input(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (line != NULL && bl.print == true)
 	{
@@ -85,14 +84,14 @@ void	ft_move_from_input(char *line, t_stack **a, t_stack **b, t_bool bl)
 		ft_print_both_lists(*a, *b, bl);
 	}
 	else if (line != NULL && bl.print == false)
-		ft_operations_switch_no_print(line, a, b, bl);
+		ft_operations_switch(line, a, b, bl);
 	else if (line == NULL || line[0] == '\0')
 		ft_move_from_input_2(line, a, b, bl);
 }
 
-void	ft_listen_to_stdin(t_stack **a, t_bool bl)
+void	ft_listen_to_stdin(t_stk **a, t_bool bl)
 {
-	t_stack	*b;
+	t_stk	*b;
 	char	*line;
 
 	b = NULL;

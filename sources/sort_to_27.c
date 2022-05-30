@@ -6,14 +6,14 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 11:05:09 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 15:17:59 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 14:35:00 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 // hard code de la resolution des cas de 3 elements
-void	ft_sort_3(t_stack **head, char who)
+void	ft_sort_3(t_stk **head, char who)
 {
 	if ((*head)->idx == min(*head) && (*head)->next->idx < max(*head))
 		return ;
@@ -36,7 +36,7 @@ void	ft_sort_3(t_stack **head, char who)
 }
 
 // remet les elements passes dans B sur le dessus de A
-void	ft_sort_back_27(t_stack **a, t_stack **b)
+void	ft_sort_back_27(t_stk **a, t_stk **b)
 {
 	if ((*b) == NULL)
 		return ;
@@ -44,7 +44,7 @@ void	ft_sort_back_27(t_stack **a, t_stack **b)
 		push(a, b, 'a');
 }
 
-void	ft_stupid_norminette(int i, t_stack **a)
+void	ft_stupid_norminette(int i, t_stk **a)
 {
 	if (i > 0)
 		rotate(a, 'a');
@@ -54,7 +54,7 @@ void	ft_stupid_norminette(int i, t_stack **a)
 
 // pousse dans B tous les elements sauf 3 en les classant en
 // ordre decroissant dans B
-void	ft_prepare_transfer_to_b(t_stack **a, t_stack **b)
+void	ft_prepare_transfer_to_b(t_stk **a, t_stk **b)
 {
 	int	num;
 	int	i;
@@ -80,7 +80,7 @@ void	ft_prepare_transfer_to_b(t_stack **a, t_stack **b)
 }
 
 // gere le tri de moins de 28 elements
-void	ft_sort_to_27(t_stack **a, t_stack **b)
+void	ft_sort_to_27(t_stk **a, t_stk **b)
 {
 	if (ft_check_if_sorted(*a) == 0)
 		return ;

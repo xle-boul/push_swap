@@ -6,29 +6,21 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:49:34 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 22:43:59 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:38:55 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-void	ft_error_handler_checker(char *line, t_stack **a, t_stack **b)
-{
-	ft_printf("Error\nBad input\n");
-	ft_free_list(*a);
-	ft_free_list(*b);
-	free(line);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_end_checker(char *line, t_stack **a, t_stack **b)
+void	ft_end_checker(char *line, t_stk **a, t_stk **b)
 {
 	if (ft_check_if_sorted(*a) == 0 && *b == NULL)
-		ft_printf("\nOK\n");
+		write(1, "OK\n", 4);
 	else
-		ft_printf("KO\n");
+		write(1, "KO\n", 4);
 	ft_free_list(*a);
 	ft_free_list(*b);
-	free(line);
+	if (line != NULL)
+		free(line);
 	exit(EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xle-boul <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/10 21:26:49 by xle-boul          #+#    #+#              #
-#    Updated: 2021/11/12 20:57:16 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/30 14:51:59 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,8 @@ OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 OBJSB = $(SRCSB:.c=.o)
 OBJECTS_BONUS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJSB))
 
+all: $(NAME)
+
 CC = gcc
 
 CC_FLAGS = -Wall -Wextra -Werror
@@ -77,8 +79,6 @@ $(OBJS_DIR)%.o : %.c libft.h
 $(NAME): $(OBJECTS_PREFIXED)
 	@ar r $(NAME) $(OBJECTS_PREFIXED)
 	@echo "$(NAME), created!"
-
-all: $(NAME)
 
 clean:
 	@rm -rf $(OBJS_DIR)

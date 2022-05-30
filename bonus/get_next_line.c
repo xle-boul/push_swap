@@ -6,11 +6,11 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 13:55:40 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 00:02:48 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:34:04 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/checker_bonus.h"
 
 char	*ft_get_that_line(char *patch)
 {

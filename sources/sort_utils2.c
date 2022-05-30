@@ -6,16 +6,16 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:55:04 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 15:17:59 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 // retourne l'index de valeur maximale de la liste passee en argument
-int	max(t_stack *head)
+int	max(t_stk *head)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 	int		max;
 
 	tmp = head;
@@ -30,9 +30,9 @@ int	max(t_stack *head)
 }
 
 // retourne l'index de valeur minimale de la liste passee en argument
-int	min(t_stack *head)
+int	min(t_stk *head)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 	int		min;
 
 	tmp = head;
@@ -48,9 +48,9 @@ int	min(t_stack *head)
 
 // retourne la valeur de l'index du dernier element de la
 // liste passee en argument
-int	last_index(t_stack *head)
+int	last_index(t_stk *head)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 
 	tmp = head;
 	while (tmp->next)
@@ -60,9 +60,9 @@ int	last_index(t_stack *head)
 
 // retourne la valeur de l'index du prochain element (ordre croissant) de
 // la liste passee en argument
-int	next_index(t_stack *head)
+int	next_index(t_stk *head)
 {
-	t_stack	*tmp;
+	t_stk	*tmp;
 	int		count;
 	int		n;
 

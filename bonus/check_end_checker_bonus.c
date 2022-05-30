@@ -6,13 +6,13 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:49:34 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:14:45 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 14:05:18 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
 
-void	ft_error_handler_checker(char *line, t_stack **a, t_stack **b, t_bool bl)
+void	ft_error_handler_checker(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (bl.color == false)
 		ft_printf("Error\nBad input\n");
@@ -20,7 +20,8 @@ void	ft_error_handler_checker(char *line, t_stack **a, t_stack **b, t_bool bl)
 		ft_printf(RED"Error\nBad input\n"END);
 	ft_free_list(*a);
 	ft_free_list(*b);
-	free(line);
+	if (line != NULL)
+		free(line);
 	exit(EXIT_FAILURE);
 }
 
@@ -44,7 +45,7 @@ void	ft_end_success_print(t_bool bl)
 		ft_printf(GREEN"\nOK\n"END);
 }
 
-void	ft_end_checker(char *line, t_stack **a, t_stack **b, t_bool bl)
+void	ft_end_checker(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (ft_check_if_sorted(*a) == 0 && *b == NULL)
 		ft_end_success_print(bl);
@@ -57,6 +58,7 @@ void	ft_end_checker(char *line, t_stack **a, t_stack **b, t_bool bl)
 	}
 	ft_free_list(*a);
 	ft_free_list(*b);
-	free(line);
+	if (line != NULL)
+		free(line);
 	exit(EXIT_SUCCESS);
 }

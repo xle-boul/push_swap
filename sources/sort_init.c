@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:39:48 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/24 22:48:48 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // fonction qui etablit les index des differents segments et les balance
 // dans la fonction qui les envoie dans B
-void	ft_sort_launch(t_stack **a, t_stack **b)
+void	ft_sort_launch(t_stk **a, t_stk **b)
 {
 	t_index	step;
 	int		passages;
@@ -37,9 +37,9 @@ void	ft_sort_launch(t_stack **a, t_stack **b)
 	//			 ces valeurs ont ete attribuees par tests
 // cf push_swap.c pour une explication du sort
 
-void	ft_sort_init(t_stack *a)
+void	ft_sort_init(t_stk *a)
 {
-	t_stack	*b;
+	t_stk	*b;
 
 	b = NULL;
 	if (list_length(a) <= SWEET_SPOT)

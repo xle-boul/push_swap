@@ -6,17 +6,17 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:54:08 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 21:50:42 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 14:36:24 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap(t_stack **head, char who)
+void	swap(t_stk **head, char who)
 {
-	t_stack	*first;
-	t_stack	*second;
-	t_stack	*third;
+	t_stk	*first;
+	t_stk	*second;
+	t_stk	*third;
 
 	if (!*head || !(*head)->next)
 		return ;
@@ -33,9 +33,9 @@ void	swap(t_stack **head, char who)
 	ft_operations_counter("s", who, 0);
 }
 
-void	push_last_elem(t_stack **head_dest, t_stack **head_orig)
+void	push_last_elem(t_stk **head_dest, t_stk **head_orig)
 {
-	t_stack	*tmp_dest;
+	t_stk	*tmp_dest;
 
 	tmp_dest = NULL;
 	if (*head_dest)
@@ -51,9 +51,9 @@ void	push_last_elem(t_stack **head_dest, t_stack **head_orig)
 	}
 }
 
-void	push(t_stack **head_dest, t_stack **head_orig, char who)
+void	push(t_stk **head_dest, t_stk **head_orig, char who)
 {
-	t_stack	*tmp_dest;
+	t_stk	*tmp_dest;
 
 	if (!*head_orig)
 		return ;
@@ -75,10 +75,10 @@ void	push(t_stack **head_dest, t_stack **head_orig, char who)
 	ft_operations_counter("p", who, 0);
 }
 
-void	rotate(t_stack **head, char who)
+void	rotate(t_stk **head, char who)
 {
-	t_stack	*tmp;
-	t_stack	*node;
+	t_stk	*tmp;
+	t_stk	*node;
 
 	if (!(*head) || !(*head)->next)
 		return ;
@@ -94,11 +94,11 @@ void	rotate(t_stack **head, char who)
 	ft_operations_counter("r", who, 0);
 }
 
-void	reverse_rotate(t_stack **head, char who)
+void	reverse_rotate(t_stk **head, char who)
 {
-	t_stack	*last;
-	t_stack	*tmp;
-	t_stack	*first;
+	t_stk	*last;
+	t_stk	*tmp;
+	t_stk	*first;
 
 	if (!(*head) || !(*head)->next)
 		return ;

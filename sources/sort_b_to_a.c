@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:14:40 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/25 21:46:17 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 14:34:04 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // 	Petite optimisation ici: Si la direction de l'element recherche
 // 	correspond a rotate (operation pour mettre element - 1 dans le bas
 // 	du stack A), on fait un double rotate.
-void	ft_move_to_target(t_stack **a, t_stack **b, int target, int path)
+void	ft_move_to_target(t_stk **a, t_stk **b, int target, int path)
 {
 	while (1)
 	{
@@ -47,7 +47,7 @@ void	ft_move_to_target(t_stack **a, t_stack **b, int target, int path)
 	// Petite optimisation: Si l'element - 1 est dans le fond du stack A
 	// et que le sens de rotation pour l'element est reverse rotate,
 	// double reverse rotate.
-void	ft_bring_back_to_a(t_stack **a, t_stack **b)
+void	ft_bring_back_to_a(t_stk **a, t_stk **b)
 {
 	int	target;
 	int	path;

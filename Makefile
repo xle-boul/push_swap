@@ -6,7 +6,7 @@
 #    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 11:16:31 by xle-boul          #+#    #+#              #
-#    Updated: 2022/05/26 22:12:09 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/30 20:34:34 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,13 @@ HEADER = push_swap.h
 HEADER_CHK = checker.h
 GNL = get_next_line.h
 
-LIB_DIR = ft_printf/
-LIB_OBJS_DIR = ft_printf/objs/
-LIB = libftprintf.a
+LIB_DIR = libft/
+LIB_OBJS_DIR = libft/objs/
+LIB = libft.a
+
+LIB_PRINTF_DIR = ft_printf/
+LIB_PRINTF_OBJS_DIR = ft_printf/objs/
+LIB_PRINTF = libftprintf.a
 
 all: $(NAME) $(NAME_CHK)
 
@@ -64,25 +68,30 @@ $(BONUS_OBJ_DIR)/%.o : $(BONUS_DIR)/%.c $(INCLUDES)/
 	@mkdir -p $(BONUS_OBJ_DIR)
 	@$(CC) $(FLAGS) -c -o $@ $<
 
-$(NAME): $(OBJ_FILES) $(LIB)
+$(NAME): $(OBJ_FILES) $(LIB) $(LIB_PRINTF)
 	@printf "\n$(YELLOW)Compiling push_swap...$(END)\n"
-	@$(CC) $(FLAGS) $(OBJ_FILES) $(LIB) -I $(INCLUDES)/ -o $@
+	@$(CC) $(FLAGS) $(OBJ_FILES) $(LIB) $(LIB_PRINTF) -I $(INCLUDES)/ -o $@
 	@printf "\n$(GREEN)push_swap compiled!\n$(END)Run program: $(RED)./push_swap <numbers>\n$(END)"
 
-$(NAME_CHK): $(OBJ_CHK) $(LIB)
+$(NAME_CHK): $(OBJ_CHK) $(LIB) $(LIB_PRINTF)
 	@printf "\n$(YELLOW)Compiling checker...$(END)\n"
-	@$(CC) $(FLAGS) $(OBJ_CHK) $(LIB) -I $(INCLUDES)/ -o $@
+	@$(CC) $(FLAGS) $(OBJ_CHK) $(LIB) $(LIB_PRINTF) -I $(INCLUDES)/ -o $@
 	@printf "\n$(GREEN)checker compiled!\n$(END)Run program: $(RED)./checker <numbers> then insert operations.$(END)"
 
-$(NAME_CHK_BONUS): $(OBJ_BONUS) $(LIB)
+$(NAME_CHK_BONUS): $(OBJ_BONUS) $(LIB) $(LIB_PRINTF)
 	@printf "\n$(YELLOW)Compiling checker_bonus...$(END)\n"
-	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) -I $(INCLUDES)/ -o $@
-	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker_bonus <numbers> then insert operations.$(END)\nAvailable flags:\n\t$(YELLOW)-n: shows the amount of operations done\n\t$(END)$(MAGENTA)-p: prints the stacks in between each operation call\n\t$(END)$(GREEN)-c: adds colors to the output\n$(END)"
+	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) $(LIB_PRINTF) -I $(INCLUDES)/ -o $@
+	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker_bonus <numbers> then insert operations.$(END)\nTo finish inserting operations, press $(RED)enter$(END) on an empty line.\nAvailable flags:\n\t$(YELLOW)-n: shows the amount of operations done\n\t$(END)$(MAGENTA)-p: prints the stacks in between each operation call\n\t$(END)$(GREEN)-c: adds colors to the output\n$(END)"
 
 $(LIB):
 	@printf "\n$(YELLOW)Compiling $(LIB)...$(END)\n"
-	@make bonus --no-print-directory $(LIB) -C $(LIB_DIR)
+	@make --no-print-directory $(LIB) -C $(LIB_DIR)
 	@mv $(LIB_DIR)$(LIB) .
+
+$(LIB_PRINTF):
+	@printf "\n$(YELLOW)Compiling $(LIB_PRINTF)...$(END)\n"
+	@make --no-print-directory $(LIB_PRINTF) -C $(LIB_PRINTF_DIR)
+	@mv $(LIB_PRINTF_DIR)$(LIB_PRINTF) .
 
 bonus: $(NAME_CHK_BONUS)
 
@@ -96,13 +105,14 @@ clean:
 fclean: clean
 	@printf "\n$(YELLOW)Cleaning $(NAME), $(NAME_CHK), $(LIB) and libft.a...$(END)\n"
 	@rm -f $(LIB)
+	@rm -f $(LIB_PRINTF)
 	@rm -f $(NAME)
 	@rm -f $(NAME_CHK)
 	@rm -f $(NAME_CHK_BONUS)
 	@make --no-print-directory -C $(LIB_DIR) fclean
 	@printf "$(GREEN)All clean!$(END)\n"
 
-re: fclean $(NAME)
+re: fclean all
 
 norm:
 	@norminette

@@ -6,7 +6,7 @@
 #    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/19 18:54:09 by xle-boul          #+#    #+#              #
-#    Updated: 2022/03/10 09:41:24 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/30 14:51:35 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,27 +62,24 @@ CC_FLAGS = -Werror -Wall -Wextra
 INCLUDES = -I ./header/
 INCLUDES_BONUS = -I ./sources/_bonus/
 
-LIB_DIR = libft/
-LIB_OBJS_DIR = libft/objs/
+LIB_DIR = ../libft/
+LIB_OBJS_DIR = ../libft/objs/
 LIB = libft.a
 
 OBJS_DIR = sources/objs/
 SRCS_DIR = sources/
 OBJS = *.o
 
-$(NAME): $(OBJS_DIR) $(LIB)
-	ar r $(NAME) $(LIB_OBJS_DIR)$(OBJS) $(OBJS_DIR)$(OBJS)
-	echo "$(NAME), created!"
+all: $(NAME)
 
-$(LIB):
-	make $(LIB) -C $(LIB_DIR)
+$(NAME): $(OBJS_DIR)
+	@ar r $(NAME) $(LIB_OBJS_DIR)$(OBJS) $(OBJS_DIR)$(OBJS)
+	@echo "$(NAME), created!"
 
 $(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
-	$(CC) $(CC_FLAGS) -c $(INCLUDES) $(SRCS)
-	mv *.o $(OBJS_DIR)
-
-all: $(NAME)
+	@mkdir -p $(OBJS_DIR)
+	@$(CC) $(CC_FLAGS) -c $(INCLUDES) $(SRCS)
+	@mv *.o $(OBJS_DIR)
 	
 bonus: fclean objsdirbonus $(LIB)
 	@ar r $(NAME) $(LIB_OBJS_DIR)$(OBJS) $(OBJS_DIR)$(OBJS)
