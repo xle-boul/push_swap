@@ -6,12 +6,13 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:49:26 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 14:47:07 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:06:38 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
+// reprend le code de push_swap pour creer la liste chainee du stack A
 void	ft_create_stack(t_stk **a, int ac, char **av)
 {
 	int	count;

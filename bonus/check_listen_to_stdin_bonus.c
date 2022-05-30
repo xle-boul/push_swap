@@ -6,12 +6,15 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:49:12 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:25:36 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:18:34 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
 
+// suite de la fonction switch, qui choisit que faire lors
+// de la fin des instructions.
+// permet de reperer la fin des instructions donnees grace a line[0] == '\0'
 void	ft_move_from_input_2(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (line == NULL || line[0] == '\0')
@@ -20,6 +23,7 @@ void	ft_move_from_input_2(char *line, t_stk **a, t_stk **b, t_bool bl)
 		ft_error_handler_checker(line, a, b, bl);
 }
 
+// fonction switch, sans le flag -p
 void	ft_operations_switch(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (ft_strncmp(line, "sa", 2) == 0 && ft_strlen(line) == 2)
@@ -48,6 +52,7 @@ void	ft_operations_switch(char *line, t_stk **a, t_stk **b, t_bool bl)
 		ft_move_from_input_2(line, a, b, bl);
 }
 
+// fonction switch, avec le flag -p present.
 void	ft_operations_switch_print(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (ft_strncmp(line, "sa", 2) == 0 && ft_strlen(line) == 2)
@@ -76,6 +81,8 @@ void	ft_operations_switch_print(char *line, t_stk **a, t_stk **b, t_bool bl)
 		ft_move_from_input_2(line, a, b, bl);
 }
 
+// fonction intermediaire pour appliquer ou non le flag -p.
+// appelera la fonction switch pour traiter les instructions
 void	ft_move_from_input(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (line != NULL && bl.print == true)
@@ -89,6 +96,11 @@ void	ft_move_from_input(char *line, t_stk **a, t_stk **b, t_bool bl)
 		ft_move_from_input_2(line, a, b, bl);
 }
 
+// fonction qui cree une loop infinie qui ecoute sur le STDIN
+// utilise get_next_line legerement modifie pour reprendre les operations
+// envoie chaque operation (groupe de lettres suivi d'un \n) dans une
+// fonction switch qui va trier et appliquer selon la correspondance
+// des lettres recues et des differentes operations possibles
 void	ft_listen_to_stdin(t_stk **a, t_bool bl)
 {
 	t_stk	*b;

@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:49:34 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 14:05:18 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:19:05 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_end_success_print(t_bool bl)
 		ft_printf(GREEN"\nOK\n"END);
 }
 
+// fin de la chaine de checker. imprime OK ou KO et free les stacks
 void	ft_end_checker(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (ft_check_if_sorted(*a) == 0 && *b == NULL)

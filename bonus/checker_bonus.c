@@ -6,12 +6,15 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:49:26 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 14:45:54 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:15:47 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
 
+// fonction qui reprend les flags -p, -n et/ou -c qui sont donnes en arguments
+// les isole du reste des arguments et assigne des valeurs true ou false a des
+// variables booleenne afin de pouvoir les appliquer plus tard
 bool	ft_check_flags(char ***av, t_bool *bl)
 {
 	if ((ft_strncmp(*av[0], "-p", 2) == 0 && ft_strlen(*av[0]) == 2)
@@ -29,6 +32,7 @@ bool	ft_check_flags(char ***av, t_bool *bl)
 	return (false);
 }
 
+// reprend le code de push_swap pour creer la liste chainee du stack A
 void	ft_create_stack(t_stk **a, int ac, char **av, t_bool *bl)
 {
 	int	count;
