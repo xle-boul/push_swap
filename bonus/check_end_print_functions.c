@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 22:14:31 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 00:38:44 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 01:14:26 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,28 @@ void	ft_end_index_print(t_bool bl, t_stk *a)
 			ft_print_list_index(a);
 			ft_printf(END);
 		}
+	}
+}
+
+// prend en charge les flags -d et -c
+void	ft_print_details(int color, int b_count, int rr_count, int rrr_count)
+{
+	if (color == 0)
+	{
+		ft_printf("\t%d items were transferred to B stack during the sort\n",
+			b_count);
+		ft_printf("\tSaved %d operations with 'rr'\n", rr_count);
+		ft_printf("\tSaved %d operations with 'rrr'\n", rrr_count);
+		ft_printf("\tOptimized %d operations total\n", rr_count + rrr_count);
+	}
+	else
+	{
+		ft_printf(MAGENTA
+			"\t%d items were transferred to B stack during the sort\n"
+			END, b_count);
+		ft_printf(YELLOW"\tSaved %d operations with 'rr'\n"END, rr_count);
+		ft_printf(CYAN"\tSaved %d operations with 'rrr'\n"END, rrr_count);
+		ft_printf(GREEN
+			"\tOptimized %d operations total\n"END, rr_count + rrr_count);
 	}
 }

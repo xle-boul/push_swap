@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 12:25:08 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 00:33:42 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 01:12:36 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,6 @@ int	ft_operations_counter(char *op, char who, int swtch)
 		count++;
 	}
 	return (count);
-}
-
-void	ft_print_details(int color, int b_count, int rr_count, int rrr_count)
-{
-	if (color == 0)
-	{
-		ft_printf("\t%d items were transferred to B stack during the sort\n",
-			b_count);
-		ft_printf("\tSaved %d operations with 'rr'\n", rr_count);
-		ft_printf("\tSaved %d operations with 'rrr'\n", rrr_count);
-		ft_printf("\tOptimized %d operations total\n", rr_count + rrr_count);
-	}
-	else
-	{
-		ft_printf(MAGENTA
-			"\t%d items were transferred to B stack during the sort\n"
-			END, b_count);
-		ft_printf(YELLOW"\tSaved %d operations with 'rr'\n"END, rr_count);
-		ft_printf(CYAN"\tSaved %d operations with 'rrr'\n"END, rrr_count);
-		ft_printf(GREEN
-			"\tOptimized %d operations total\n"END, rr_count + rrr_count);
-	}
 }
 
 void	ft_details_counts(int swtch, int color, int who)

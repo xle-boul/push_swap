@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:56:44 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 22:24:11 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 01:13:54 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*get_next_line(int fd);
 // atoi specialement pour push_swap
 long	ft_atoi_ps(const char *str);
 
-// fonctions de check
+// fonctions de check et erreurs
 void	ft_error_handler(int error, int *ls);
 void	ft_error_handler_free(int error, t_stk *head);
 void	ft_error_handler_checker(char *line, t_stk **a, t_stk **b, t_bool bl);
@@ -70,6 +70,7 @@ void	ft_print_both_lists(t_stk *a, t_stk *b, t_bool bl);
 void	ft_end_success_print(t_bool bl);
 void	ft_simple_end_print(t_bool bl);
 void	ft_end_index_print(t_bool bl, t_stk *a);
+void	ft_print_details(int color, int b_count, int rr_count, int rrr_count);
 
 // operations imposees
 void	swap(t_stk **head, char who);
@@ -87,7 +88,7 @@ void	ft_assign_indexes(t_stk **head);
 int		min_value(t_stk *head);
 int		next_num(t_stk *head, int num);
 
-// fonction qui ecoute sur l'entree standard (avec les 2 flags)
+// fonction qui ecoute sur l'entree standard (avec les flags)
 void	ft_listen_to_stdin(t_stk **a, t_bool bl);
 void	ft_move_from_input(char *line, t_stk **a, t_stk **b, t_bool bl);
 void	ft_move_from_input_2(char *line, t_stk **a, t_stk **b, t_bool bl);
