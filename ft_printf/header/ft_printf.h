@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 15:49:49 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 14:10:58 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 00:23:27 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define BLUE "\033[1;34m"
 # define MAGENTA "\033[1;35m"
 # define CYAN "\033[1;36m"
+# define GRAY "\033[1;90m"
 # define RESET "\033[0m"
 # define END "\e[0m"
 

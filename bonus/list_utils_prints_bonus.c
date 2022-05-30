@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 21:19:12 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:24:49 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 00:16:11 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ void	ft_print_both_lists(t_stk *a, t_stk *b, t_bool bl)
 		ft_printf("B = ");
 		ft_print_list(b, 'C', bl);
 	}
+}
+
+void	ft_print_list_index(t_stk *head)
+{
+	if (!head)
+		return ;
+	while (head != NULL)
+	{
+		ft_printf("%d ", head->idx);
+		head = head->next;
+	}
+	ft_printf("\n");
 }

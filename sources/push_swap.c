@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:53:10 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 00:40:21 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ int	main(int ac, char **av)
 	free (ls);
 	ft_assign_indexes(&a);
 	ft_sort_init(a);
+	return (0);
 }

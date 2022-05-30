@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:54:08 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:56:17 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	push(t_stk **head_dest, t_stk **head_orig, char who)
 	if (!((*head_orig)->next))
 	{
 		push_last_elem(head_dest, head_orig);
+		ft_details_counts(0, 0, who);
 		ft_operations_counter("p", who, 0);
 		return ;
 	}
@@ -72,6 +73,7 @@ void	push(t_stk **head_dest, t_stk **head_orig, char who)
 	(*head_dest)->next = tmp_dest;
 	if (tmp_dest != NULL)
 		tmp_dest->prev = *head_dest;
+	ft_details_counts(0, 0, who);
 	ft_operations_counter("p", who, 0);
 }
 

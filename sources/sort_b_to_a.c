@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:14:40 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 14:34:04 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 00:36:07 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_bring_back_to_a(t_stk **a, t_stk **b)
 		if (*b == NULL && ft_check_if_sorted(*a) == 0)
 			return ;
 		if (last_index(*a) != max(*a)
-			&& ft_find_shortest_path(*b, max(*b) < 0))
+			&& *b != NULL && ft_find_shortest_path(*b, max(*b) < 0))
 			revrotrot(a, b, 0);
 		else if (last_index(*a) != max(*a))
 			reverse_rotate(a, 'a');

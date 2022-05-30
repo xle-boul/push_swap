@@ -6,7 +6,7 @@
 #    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 11:16:31 by xle-boul          #+#    #+#              #
-#    Updated: 2022/05/30 20:34:34 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/31 00:45:13 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ YELLOW	= \033[1;33m
 BLUE	= \033[1;34m
 MAGENTA	= \033[1;35m
 CYAN	= \033[1;36m
+WHITE	= \033[1;37m
 RESET	= \033[0m
 END		= \e[0m
 
@@ -81,7 +82,7 @@ $(NAME_CHK): $(OBJ_CHK) $(LIB) $(LIB_PRINTF)
 $(NAME_CHK_BONUS): $(OBJ_BONUS) $(LIB) $(LIB_PRINTF)
 	@printf "\n$(YELLOW)Compiling checker_bonus...$(END)\n"
 	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) $(LIB_PRINTF) -I $(INCLUDES)/ -o $@
-	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker_bonus <numbers> then insert operations.$(END)\nTo finish inserting operations, press $(RED)enter$(END) on an empty line.\nAvailable flags:\n\t$(YELLOW)-n: shows the amount of operations done\n\t$(END)$(MAGENTA)-p: prints the stacks in between each operation call\n\t$(END)$(GREEN)-c: adds colors to the output\n$(END)"
+	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker_bonus <numbers> then insert operations.$(END)\nTo finish inserting operations, press $(RED)enter$(END) on an empty line.\nAvailable flags:$(GREEN)\n\t-c: adds colors to the output$(END)$(WHITE)\n\t-d: displays the optimization details and the amount of elements transferred in stack B$(END)$(CYAN)\n\t-i: displays the sorted stack A with indexes rather than numbers given$(END)\n\t$(YELLOW)-n: displays the amount of operations done\n\t$(END)$(MAGENTA)-p: displays the stacks in between each operation call\n$(END)"
 
 $(LIB):
 	@printf "\n$(YELLOW)Compiling $(LIB)...$(END)\n"

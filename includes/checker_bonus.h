@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:56:44 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 14:11:35 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/30 22:24:11 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_bool
 	bool	color;
 	bool	print;
 	bool	ops;
+	bool	details;
+	bool	index;
 }				t_bool;
 
 // get next line
@@ -59,11 +61,15 @@ int		ft_check_if_sorted(t_stk *head);
 void	ft_free_array(int **splits, int max);
 void	ft_free_list(t_stk *head);
 int		ft_operations_counter(char *op, char who, int swtch);
+void	ft_details_counts(int swtch, int color, int who);
 
 // fonction qui impriment
 void	ft_print_list(t_stk *head, char color, t_bool bl);
 void	ft_print_list_index(t_stk *head);
 void	ft_print_both_lists(t_stk *a, t_stk *b, t_bool bl);
+void	ft_end_success_print(t_bool bl);
+void	ft_simple_end_print(t_bool bl);
+void	ft_end_index_print(t_bool bl, t_stk *a);
 
 // operations imposees
 void	swap(t_stk **head, char who);

@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:49:26 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 21:15:47 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 00:08:44 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ bool	ft_check_flags(char ***av, t_bool *bl)
 {
 	if ((ft_strncmp(*av[0], "-p", 2) == 0 && ft_strlen(*av[0]) == 2)
 		|| (ft_strncmp(*av[0], "-c", 2) == 0 && ft_strlen(*av[0]) == 2)
-		|| (ft_strncmp(*av[0], "-n", 2) == 0 && ft_strlen(*av[0]) == 2))
+		|| (ft_strncmp(*av[0], "-n", 2) == 0 && ft_strlen(*av[0]) == 2)
+		|| (ft_strncmp(*av[0], "-d", 2) == 0 && ft_strlen(*av[0]) == 2)
+		|| (ft_strncmp(*av[0], "-i", 2) == 0 && ft_strlen(*av[0]) == 2))
 	{
 		if (ft_strncmp(*av[0], "-c", 2) == 0)
 			bl->color = true;
@@ -27,6 +29,10 @@ bool	ft_check_flags(char ***av, t_bool *bl)
 			bl->print = true;
 		else if (ft_strncmp(*av[0], "-n", 2) == 0)
 			bl->ops = true;
+		else if (ft_strncmp(*av[0], "-d", 2) == 0)
+			bl->details = true;
+		else if (ft_strncmp(*av[0], "-i", 2) == 0)
+			bl->index = true;
 		return (true);
 	}
 	return (false);
@@ -72,6 +78,8 @@ int	main(int ac, char **av)
 	bl.color = false;
 	bl.ops = false;
 	bl.print = false;
+	bl.details = false;
+	bl.index = false;
 	ft_create_stack(&a, ac, av, &bl);
 	ft_assign_indexes(&a);
 	ft_listen_to_stdin(&a, bl);

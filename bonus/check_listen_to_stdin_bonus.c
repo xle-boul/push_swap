@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:49:12 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 21:18:34 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 01:07:48 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_operations_switch(char *line, t_stk **a, t_stk **b, t_bool bl)
 	else if (ft_strncmp(line, "sb", 2) == 0 && ft_strlen(line) == 2)
 		swap(b, 'c');
 	else if (ft_strncmp(line, "pb", 2) == 0 && ft_strlen(line) == 2)
-		push(b, a, 'c');
+		push(b, a, 'v');
 	else if (ft_strncmp(line, "pa", 2) == 0 && ft_strlen(line) == 2)
 		push(a, b, 'c');
 	else if (ft_strncmp(line, "ra", 2) == 0 && ft_strlen(line) == 2)
@@ -83,10 +83,14 @@ void	ft_operations_switch_print(char *line, t_stk **a, t_stk **b, t_bool bl)
 
 // fonction intermediaire pour appliquer ou non le flag -p.
 // appelera la fonction switch pour traiter les instructions
+// le printf "\e[A\e[K" sert a remonter d'une ligne et l'effacer
+// dans bash. Sinon les inputs sont imprimes et les commandes dans le
+// programme aussi, du coup chaque operation se voit imprimee 2 fois
 void	ft_move_from_input(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (line != NULL && bl.print == true)
 	{
+		ft_printf("\e[A\e[K");
 		ft_operations_switch_print(line, a, b, bl);
 		ft_print_both_lists(*a, *b, bl);
 	}
