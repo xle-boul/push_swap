@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:49:34 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 00:39:32 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:33:52 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_error_handler_checker(char *line, t_stk **a, t_stk **b, t_bool bl)
 {
 	if (bl.color == false)
-		ft_printf("Error\nBad input\n");
+		write(2, "Error\nBad input\n", 17);
 	else
-		ft_printf(RED"Error\nBad input\n"END);
+		write(2, RED"Error\nBad input\n"END, 28);
 	ft_free_list(*a);
 	ft_free_list(*b);
 	if (line != NULL)

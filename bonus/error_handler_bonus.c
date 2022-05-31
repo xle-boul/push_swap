@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:54:24 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 11:22:59 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:31:34 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ void	ft_check_doubles(int *ls, int count)
 void	ft_error_handler(int error, int *ls)
 {
 	if (error == 0)
-		ft_printf("Error\nPlease insert more than one number as argument\n");
+		write(2, "Error\nPlease insert more than one number as argument\n", 54);
 	if (error == 1)
-		ft_printf("Error\nPlease only provide numbers to arguments\n");
+		write(2, "Error\nPlease only provide numbers to arguments\n", 48);
 	if (error == 2)
-		ft_printf("Error\nPlease make sure every number is unique\n");
+		write(2, "Error\nPlease make sure every number is unique\n", 47);
 	if (error == 3)
-		ft_printf("Error\nAll numbers are NOT in scope (int)\n");
+		write(2, "Error\nAll numbers are NOT in scope (int)\n", 42);
 	if (error == 4)
-		ft_printf("Error\nMalloc failed\n");
+		write(2, "Error\nMalloc failed\n", 21);
 	if (ls != NULL)
 		free(ls);
 	exit(EXIT_FAILURE);
@@ -81,7 +81,7 @@ void	ft_error_handler(int error, int *ls)
 void	ft_error_handler_free(int error, t_stk *head)
 {
 	if (error == 0)
-		ft_printf("Error\nmalloc failed at ft_list_create\n");
+		write(2, "Error\nmalloc failed at ft_list_create\n", 39);
 	ft_free_list(head);
 	exit(EXIT_FAILURE);
 }

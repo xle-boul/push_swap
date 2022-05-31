@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:49:26 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 00:08:44 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:00:10 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,13 @@ bool	ft_check_flags(char ***av, t_bool *bl)
 }
 
 // reprend le code de push_swap pour creer la liste chainee du stack A
-void	ft_create_stack(t_stk **a, int ac, char **av, t_bool *bl)
+void	ft_create_stack(t_stk **a, char **av, t_bool *bl)
 {
 	int	count;
 	int	i;
 	int	*ls;
 
 	count = 0;
-	if (ac < 3)
-		ft_error_handler(0, NULL);
-	av++;
 	while (ft_check_flags(&av, bl) == true)
 		av++;
 	while (av[count])
@@ -80,7 +77,9 @@ int	main(int ac, char **av)
 	bl.print = false;
 	bl.details = false;
 	bl.index = false;
-	ft_create_stack(&a, ac, av, &bl);
+	if (ac <= 2)
+		return (0);
+	ft_create_stack(&a, ++av, &bl);
 	ft_assign_indexes(&a);
 	ft_listen_to_stdin(&a, bl);
 	return (0);

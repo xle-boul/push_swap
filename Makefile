@@ -6,7 +6,7 @@
 #    By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 11:16:31 by xle-boul          #+#    #+#              #
-#    Updated: 2022/05/31 00:45:13 by xle-boul         ###   ########.fr        #
+#    Updated: 2022/05/31 11:18:55 by xle-boul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ BLUE	= \033[1;34m
 MAGENTA	= \033[1;35m
 CYAN	= \033[1;36m
 WHITE	= \033[1;37m
+UNDERLINE = \e[4m
 RESET	= \033[0m
 END		= \e[0m
 
@@ -77,12 +78,12 @@ $(NAME): $(OBJ_FILES) $(LIB) $(LIB_PRINTF)
 $(NAME_CHK): $(OBJ_CHK) $(LIB) $(LIB_PRINTF)
 	@printf "\n$(YELLOW)Compiling checker...$(END)\n"
 	@$(CC) $(FLAGS) $(OBJ_CHK) $(LIB) $(LIB_PRINTF) -I $(INCLUDES)/ -o $@
-	@printf "\n$(GREEN)checker compiled!\n$(END)Run program: $(RED)./checker <numbers> then insert operations.$(END)"
+	@printf "\n$(GREEN)checker compiled!\n$(END)Run program: $(RED)./checker $(BLUE)<numbers>$(RED) then insert operations.\n$(END)To finish inserting operations, press $(RED)ENTER $(END)or $(RED)CTRL-D$(END).\n"
 
 $(NAME_CHK_BONUS): $(OBJ_BONUS) $(LIB) $(LIB_PRINTF)
 	@printf "\n$(YELLOW)Compiling checker_bonus...$(END)\n"
 	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) $(LIB_PRINTF) -I $(INCLUDES)/ -o $@
-	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker_bonus <numbers> then insert operations.$(END)\nTo finish inserting operations, press $(RED)enter$(END) on an empty line.\nAvailable flags:$(GREEN)\n\t-c: adds colors to the output$(END)$(WHITE)\n\t-d: displays the optimization details and the amount of elements transferred in stack B$(END)$(CYAN)\n\t-i: displays the sorted stack A with indexes rather than numbers given$(END)\n\t$(YELLOW)-n: displays the amount of operations done\n\t$(END)$(MAGENTA)-p: displays the stacks in between each operation call\n$(END)"
+	@printf "\n$(GREEN)checker_bonus compiled!\n$(END)Run program: $(RED)./checker_bonus $(BLUE)<numbers>$(RED) then insert operations.$(END)\nTo finish inserting operations, press $(RED)ENTER $(END)or $(RED)CTRL-D$(END).\nAvailable flags:$(GREEN)\n\t-c: adds colors to the output$(END)$(WHITE)\n\t-d: displays the optimization details and the amount of elements transferred in stack B$(END)$(CYAN)\n\t-i: displays the sorted stack A with indexes rather than numbers given$(END)\n\t$(YELLOW)-n: displays the amount of operations done\n\t$(END)$(MAGENTA)-p: displays the stacks in between each operation call\n$(END)"
 
 $(LIB):
 	@printf "\n$(YELLOW)Compiling $(LIB)...$(END)\n"
@@ -119,7 +120,7 @@ norm:
 	@norminette
 
 help:
-	@printf "$(RED)\t\t\tMakefile rules:$(END)\n\n"
+	@printf "$(RED)\t\t\t$(UNDERLINE)Makefile rules:$(END)\n\n"
 	@printf "$(CYAN)'make'$(END): \t\tCompile mandatory part\n"
 	@printf "$(CYAN)'make push_swap'$(END): \tCompile mandatory part but only push_swap\n"
 	@printf "$(CYAN)'make checker'$(END): \tCompile mandatory part but only checker\n"
@@ -128,6 +129,7 @@ help:
 	@printf "$(CYAN)'make re'$(END): \t\tGet rid of everything and recompile mandatory part\n\n"
 	@printf "$(MAGENTA)'make bonus'$(END): \t\tCompile bonus part\n\n"
 	@printf "$(YELLOW)'make norm'$(END): \t\tCheck norminette\n"
+	@printf "\n\t\t\t$(RED)$(UNDERLINE)Checker Bonus Flags:$(END)\n$(GREEN)-c: adds colors to the output$(END)$(WHITE)\n-d: displays the optimization details and the amount of elements transferred in stack B$(END)$(CYAN)\n-i: displays the sorted stack A with indexes rather than numbers given$(END)\n$(YELLOW)-n: displays the amount of operations done\n$(END)$(MAGENTA)-p: displays the stacks in between each operation call\n$(END)\n\n"
 
 
 .PHONY: all bonus clean fclean re norm help

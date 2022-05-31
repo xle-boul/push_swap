@@ -6,11 +6,33 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:53:10 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 00:40:21 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:22:36 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+// creation de la liste chainee a partir des arguments recus
+void	ft_create_stack(t_stk **a, char **av)
+{
+	int	count;
+	int	i;
+	int	*ls;
+
+	count = 0;
+	while (av[count])
+		if (ft_check_arguments(av[count++]) == -1)
+			ft_error_handler(1, NULL);
+	ls = malloc(sizeof(int) * count);
+	if (!ls)
+		ft_error_handler(4, NULL);
+	i = -1;
+	while (av[++i])
+		ls[i] = ft_atoi_ps(av[i]);
+	ft_check_doubles(ls, count);
+	*a = ft_arg_to_chained_list(ls, count);
+	free(ls);
+}
 
 /* =============================== PUSH SWAP ===============================
 
@@ -57,26 +79,12 @@ de facilite.
 int	main(int ac, char **av)
 {
 	t_stk		*a;
-	int			*ls;
-	int			i;
-	int			count;
 
-	count = 0;
-	if (ac < 3)
+	if (ac == 1)
 		ft_error_handler(0, NULL);
-	av++;
-	while (av[count])
-		if (ft_check_arguments(av[count++]) == -1)
-			ft_error_handler(1, NULL);
-	ls = malloc(sizeof(int) * count);
-	if (!ls)
-		ft_error_handler(4, NULL);
-	i = -1;
-	while (av[++i])
-		ls[i] = ft_atoi_ps(av[i]);
-	ft_check_doubles(ls, count);
-	a = ft_arg_to_chained_list(ls, count);
-	free (ls);
+	else if (ac == 2)
+		return (0);
+	ft_create_stack(&a, ++av);
 	ft_assign_indexes(&a);
 	ft_sort_init(a);
 	return (0);

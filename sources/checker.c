@@ -6,23 +6,20 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:49:26 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/30 21:06:38 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/05/31 10:55:07 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
 // reprend le code de push_swap pour creer la liste chainee du stack A
-void	ft_create_stack(t_stk **a, int ac, char **av)
+void	ft_create_stack(t_stk **a, char **av)
 {
 	int	count;
 	int	i;
 	int	*ls;
 
 	count = 0;
-	if (ac < 3)
-		ft_error_handler_checker(0, NULL);
-	av++;
 	while (av[count])
 		if (ft_check_arguments(av[count++]) == -1)
 			ft_error_handler_checker(1, NULL);
@@ -46,9 +43,9 @@ int	main(int ac, char **av)
 {
 	t_stk		*a;
 
-	if (ac == 1)
+	if (ac <= 2)
 		return (0);
-	ft_create_stack(&a, ac, av);
+	ft_create_stack(&a, ++av);
 	ft_assign_indexes(&a);
 	ft_listen_to_stdin(a);
 	return (0);
