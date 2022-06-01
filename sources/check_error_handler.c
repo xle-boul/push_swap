@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:26:50 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 11:29:43 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:52:20 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	ft_bad_input(char *line, t_stk **a, t_stk **b)
 
 void	ft_error_handler_checker(int error, int *ls)
 {
-	if (error == 0)
-		write(2, "Error\nPlease insert more than one number as argument\n", 54);
 	if (error == 1)
 		write(2, "Error\nPlease only provide numbers to arguments\n", 48);
 	if (error == 2)

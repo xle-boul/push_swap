@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:54:24 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 10:57:40 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:52:31 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	ft_check_doubles(int *ls, int count)
 
 void	ft_error_handler(int error, int *ls)
 {
-	if (error == 0)
-		write(2, "Error\nPlease insert at least one number as argument\n", 53);
 	if (error == 1)
 		write(2, "Error\nPlease only provide numbers to arguments\n", 48);
 	if (error == 2)

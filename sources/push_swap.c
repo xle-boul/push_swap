@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:53:10 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/05/31 11:22:36 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:52:05 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,9 @@ int	main(int ac, char **av)
 {
 	t_stk		*a;
 
-	if (ac == 1)
-		ft_error_handler(0, NULL);
-	else if (ac == 2)
-		return (0);
 	ft_create_stack(&a, ++av);
+	if (ac <= 2)
+		return (0);
 	ft_assign_indexes(&a);
 	ft_sort_init(a);
 	return (0);
