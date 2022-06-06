@@ -6,7 +6,7 @@
 /*   By: xle-boul <xle-boul@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:49:26 by xle-boul          #+#    #+#             */
-/*   Updated: 2022/06/01 10:51:20 by xle-boul         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:02:23 by xle-boul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int	main(int ac, char **av)
 	bl.index = false;
 	ft_create_stack(&a, ++av, &bl);
 	if (ac <= 2)
+	{
+		ft_free_list(a);
 		return (0);
+	}
 	ft_assign_indexes(&a);
 	ft_listen_to_stdin(&a, bl);
 	return (0);
